@@ -6,10 +6,8 @@ import Link from 'next/link';
 
 export default function HomePage() {
   const lookerStudioDirectUrl = "https://lookerstudio.google.com/reporting/2a1228bc-36fb-4f28-8190-38a5149ee670";
-  // It's common for reports to have a default page or a specific page to embed.
-  // If your report has a specific page ID like 'page/p_xxxxxxx', ensure it's part of the embed URL.
-  // For now, using the base embed URL structure.
-  const lookerStudioEmbedUrl = "https://lookerstudio.google.com/embed/reporting/2a1228bc-36fb-4f28-8190-38a5149ee670";
+  // Updated embed URL based on user input
+  const lookerStudioEmbedUrl = "https://lookerstudio.google.com/embed/reporting/2a1228bc-36fb-4f28-8190-38a5149ee670/page/p_t5v3dj3pnd";
 
 
   return (
@@ -25,9 +23,9 @@ export default function HomePage() {
               title="Looker Studio Report"
               width="100%"
               height="100%"
-              src={`${lookerStudioEmbedUrl}?theme=light`} // Added theme parameter, can be useful
+              src={lookerStudioEmbedUrl} // Using the updated embed URL
               allowFullScreen
-              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-popups-to-escape-sandbox"
+              sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-popups-to-escape-sandbox" // Updated sandbox attributes
               className="border-0"
             ></iframe>
           </div>
@@ -37,7 +35,7 @@ export default function HomePage() {
               <div>
                 <p className="font-bold">Importante: Problema al mostrar el informe de Looker Studio</p>
                 <p className="mt-1">
-                  El mensaje "No se puede acceder al informe" o "El propietario del informe ha inhabilitado la visualización en otros sitios web" indica que <strong>la configuración actual del informe en Looker Studio no permite insertarlo aquí.</strong>
+                  Si ves un mensaje como "No se puede acceder al informe" o "El propietario del informe ha inhabilitado la visualización en otros sitios web", esto indica que <strong>la configuración actual del informe en Looker Studio no permite insertarlo aquí.</strong>
                 </p>
                 <p className="mt-3">
                   <strong>Para solucionarlo, el propietario del informe debe:</strong>
@@ -47,7 +45,7 @@ export default function HomePage() {
                   <li>Ir a "Archivo" (o "File") en el menú superior.</li>
                   <li>Seleccionar "Insertar informe" (o "Embed report").</li>
                   <li>En la ventana emergente, asegurarse de que la casilla <strong>"Habilitar inserción"</strong> (o "Enable embedding") esté marcada.</li>
-                  <li>Copiar la "URL para insertar" (Embed URL) proporcionada y verificar que sea la que se está usando en la aplicación.</li>
+                  <li>Copiar la "URL para insertar" (Embed URL) proporcionada y verificar que sea la que se está usando en la aplicación (debería ser: <code>{lookerStudioEmbedUrl}</code>).</li>
                   <li>Revisar también las opciones de "Compartir" (Share) para asegurar que los usuarios de esta aplicación tengan permiso para ver el informe (ej. "Cualquier persona en Internet con el enlace puede ver").</li>
                 </ol>
                 <p className="mt-3">
