@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { AlertTriangle } from 'lucide-react';
 
 export default function HomePage() {
-  const lookerStudioUrl = "https://lookerstudio.google.com/reporting/2a1228bc-36fb-4f28-8190-38a5149ee670/page/p_t5v3dj3pnd";
+  const lookerStudioUrl = "https://lookerstudio.google.com/embed/reporting/2a1228bc-36fb-4f28-8190-38a5149ee670/page/p_t5v3dj3pnd";
 
   return (
     <div className="space-y-6">
@@ -20,7 +20,7 @@ export default function HomePage() {
               height="100%"
               src={lookerStudioUrl}
               allowFullScreen
-              sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-forms allow-popups"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-popups-to-escape-sandbox"
               className="border-0"
             ></iframe>
           </div>
@@ -29,7 +29,7 @@ export default function HomePage() {
               <div className="py-1"><AlertTriangle className="h-5 w-5 text-yellow-500 mr-3" /></div>
               <div>
                 <p className="font-bold">Nota sobre la visualización:</p>
-                <p>Asegúrate de haber iniciado sesión en tu cuenta de Google con acceso al informe de Looker Studio para una correcta visualización. Si ves un error, verifica tus permisos o contacta al administrador del informe.</p>
+                <p>Asegúrate de haber iniciado sesión en tu cuenta de Google con acceso al informe de Looker Studio para una correcta visualización. Si ves un error, verifica que el informe de Looker Studio esté configurado para permitir la inserción (embedding) o contacta al administrador del informe.</p>
               </div>
             </div>
           </div>
