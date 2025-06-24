@@ -42,12 +42,12 @@ export default function LoginPage() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-background to-yellow-100 p-4">
       <Card className="w-full max-w-md shadow-2xl">
-        <CardHeader className="items-center text-center">
+        <CardHeader className="items-center text-center p-4 md:p-6">
           <MercadoLibreLogo className="h-12 w-auto mb-4" />
-          <CardTitle className="text-3xl font-headline">LP Vision</CardTitle>
+          <CardTitle className="text-2xl md:text-3xl font-headline">LP Vision</CardTitle>
           <CardDescription>Bienvenido. Inicia sesión para continuar.</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-4 pt-0 md:p-6 md:pt-0">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm font-medium">Correo Electrónico</Label>
@@ -75,7 +75,7 @@ export default function LoginPage() {
             </Button>
           </form>
         </CardContent>
-        <CardFooter className="text-center text-xs text-muted-foreground">
+        <CardFooter className="text-center text-xs text-muted-foreground p-4 md:p-6">
           <p>&copy; {new Date().getFullYear()} Mercado Libre. Todos los derechos reservados.</p>
         </CardFooter>
       </Card>

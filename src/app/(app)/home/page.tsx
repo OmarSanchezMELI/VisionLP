@@ -13,12 +13,12 @@ export default function HomePage() {
   return (
     <div className="space-y-6">
       <Card className="shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-2xl font-headline">Tablero Principal</CardTitle>
+        <CardHeader className="p-4 md:p-6">
+          <CardTitle className="text-xl md:text-2xl font-headline">Tablero Principal</CardTitle>
           <CardDescription>Visualización de datos clave de Loss Prevention.</CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="aspect-[16/9] w-full rounded-lg overflow-hidden border border-muted bg-muted/10 flex flex-col items-center justify-center">
+        <CardContent className="p-4 pt-0 md:p-6 md:pt-0">
+          <div className="h-[450px] md:h-auto md:aspect-[16/9] w-full rounded-lg overflow-hidden border border-muted bg-muted/10 flex flex-col items-center justify-center">
             <iframe
               title="Looker Studio Report"
               width="100%"
