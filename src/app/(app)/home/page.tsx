@@ -5,9 +5,9 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export default function HomePage() {
-  const lookerStudioDirectUrl = "https://lookerstudio.google.com/reporting/2a1228bc-36fb-4f28-8190-38a5149ee670";
+  const lookerStudioDirectUrl = "https://lookerstudio.google.com/reporting/29ec7fbe-f97b-40cf-b8e3-ff9c026dceb8";
   // Updated embed URL based on user input
-  const lookerStudioEmbedUrl = "https://lookerstudio.google.com/embed/reporting/2a1228bc-36fb-4f28-8190-38a5149ee670/page/p_t5v3dj3pnd";
+  const lookerStudioEmbedUrl = "https://lookerstudio.google.com/embed/reporting/29ec7fbe-f97b-40cf-b8e3-ff9c026dceb8/page/seJOF";
 
 
   return (
