@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ShieldAlert, Users, Clock } from 'lucide-react';
+import { ShieldAlert, Users } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import Link from 'next/link';
 
@@ -26,7 +26,6 @@ const getInitials = (name: string) => {
 
 function RepsEnTurno() {
   const [onDutyReps, setOnDutyReps] = useState<{ usuario: string; horario: string; }[]>([]);
-  const [cdmxTime, setCdmxTime] = useState<string>('');
 
   const checkSchedules = useCallback(() => {
     const now = new Date();
@@ -39,8 +38,6 @@ function RepsEnTurno() {
       .replace(/[\u0300-\u036f]/g, ""); // "lunes", "martes", "miercoles", etc.
 
     const currentTime = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Mexico_City', hour12: false }).format(now); // "HH:mm"
-
-    setCdmxTime(new Intl.DateTimeFormat('es-MX', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Mexico_City' }).format(now));
 
     const available = repsData.filter(rep => {
       // Check if it's a day off
@@ -63,37 +60,31 @@ function RepsEnTurno() {
 
   return (
      <Card className="shadow-lg">
-      <CardHeader className="p-4">
-        <CardTitle className="text-base font-headline flex items-center">
-          <Users className="mr-2 h-5 w-5 text-primary" />
+      <CardHeader className="p-3">
+        <CardTitle className="text-sm font-headline flex items-center">
+          <Users className="mr-2 h-4 w-4 text-primary" />
           REPs en Turno
         </CardTitle>
-        {cdmxTime && (
-            <CardDescription className="flex items-center text-xs">
-                <Clock className="mr-1.5 h-3 w-3" />
-                Hora actual (CDMX): {cdmxTime}
-            </CardDescription>
-        )}
       </CardHeader>
-      <CardContent className="p-4 pt-0">
+      <CardContent className="p-3 pt-0">
         {onDutyReps.length > 0 ? (
-          <ul className="space-y-3">
+          <ul className="space-y-2">
             {onDutyReps.map((rep) => (
-              <li key={rep.usuario} className="flex items-center space-x-3">
-                <Avatar className="h-10 w-10 border-2 border-primary">
+              <li key={rep.usuario} className="flex items-center space-x-2">
+                <Avatar className="h-8 w-8 border border-primary">
                    <AvatarImage src={`https://avatar.vercel.sh/${rep.usuario.replace(/\s/g, '')}.png?s=100`} alt={rep.usuario} />
                   <AvatarFallback>{getInitials(rep.usuario)}</AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="font-semibold text-sm">{rep.usuario}</p>
+                  <p className="font-semibold text-xs">{rep.usuario}</p>
                   <p className="text-xs text-muted-foreground">{rep.horario}</p>
                 </div>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="text-muted-foreground text-center py-4">
-            No hay REPs disponibles en este momento.
+          <p className="text-muted-foreground text-center py-2 text-sm">
+            No hay REPs disponibles.
           </p>
         )}
       </CardContent>
