@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function ControlDePerdidasPage() {
   const lookerStudioEmbedUrl = "https://lookerstudio.google.com/embed/reporting/2a1228bc-36fb-4f28-8190-38a5149ee670/page/p_t5v3dj3pnd";
-  const chatUrl = "https://chat.google.com/u/0/search/alexis.tolentinorivera@mercadolibre.com.mx";
+  const chatUrl = "https://mail.google.com/chat/u/0/#chat/dm/00i2ncAAAAE";
 
   return (
     <Card className="shadow-lg">
