@@ -120,21 +120,23 @@ export default function ControlDePerdidasPage() {
       </CardHeader>
       <CardContent className="p-4 pt-0 md:p-6 md:pt-0">
         <div className="space-y-6 pt-4">
-          <div className="flex items-center space-x-4">
-            <Link href={chatUrl} target="_blank" rel="noopener noreferrer" className="shrink-0">
-              <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
-                <AvatarImage src={imageUrl} alt="Foto de Didier Tolentino" />
-                <AvatarFallback>DT</AvatarFallback>
-              </Avatar>
-            </Link>
-            <div>
-              <h3 className="text-xl font-bold">Didier Tolentino</h3>
-              <p className="text-md text-muted-foreground">Coordinador de CP</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            <div className="flex items-center space-x-4">
+              <Link href={chatUrl} target="_blank" rel="noopener noreferrer" className="shrink-0">
+                <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                  <AvatarImage src={imageUrl} alt="Foto de Didier Tolentino" />
+                  <AvatarFallback>DT</AvatarFallback>
+                </Avatar>
+              </Link>
+              <div>
+                <h3 className="text-xl font-bold">Didier Tolentino</h3>
+                <p className="text-md text-muted-foreground">Coordinador de CP</p>
+              </div>
             </div>
+            
+            <RepsEnTurno />
           </div>
           
-          <RepsEnTurno />
-
           <div className="h-[450px] md:h-auto md:aspect-[16/9] w-full rounded-lg overflow-hidden border border-muted bg-muted/10 flex flex-col items-center justify-center">
               <iframe
                 title="Reporte de Control de Pérdidas"
