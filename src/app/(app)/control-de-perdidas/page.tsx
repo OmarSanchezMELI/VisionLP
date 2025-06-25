@@ -63,8 +63,8 @@ function RepsEnTurno() {
 
   return (
      <Card className="shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-lg md:text-xl font-headline flex items-center">
+      <CardHeader className="p-4">
+        <CardTitle className="text-base font-headline flex items-center">
           <Users className="mr-2 h-5 w-5 text-primary" />
           REPs en Turno
         </CardTitle>
@@ -75,18 +75,18 @@ function RepsEnTurno() {
             </CardDescription>
         )}
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-4 pt-0">
         {onDutyReps.length > 0 ? (
-          <ul className="space-y-4">
+          <ul className="space-y-3">
             {onDutyReps.map((rep) => (
-              <li key={rep.usuario} className="flex items-center space-x-4">
-                <Avatar className="h-12 w-12 border-2 border-primary">
+              <li key={rep.usuario} className="flex items-center space-x-3">
+                <Avatar className="h-10 w-10 border-2 border-primary">
                    <AvatarImage src={`https://avatar.vercel.sh/${rep.usuario.replace(/\s/g, '')}.png?s=100`} alt={rep.usuario} />
                   <AvatarFallback>{getInitials(rep.usuario)}</AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="font-semibold">{rep.usuario}</p>
-                  <p className="text-sm text-muted-foreground">{rep.horario}</p>
+                  <p className="font-semibold text-sm">{rep.usuario}</p>
+                  <p className="text-xs text-muted-foreground">{rep.horario}</p>
                 </div>
               </li>
             ))}
