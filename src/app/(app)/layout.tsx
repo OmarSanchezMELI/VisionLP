@@ -29,14 +29,14 @@ import {
   SidebarInset,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { Home, ShieldAlert, MessagesSquare, Lock, Briefcase, BotIcon, LogOut, UserCircle, LayoutDashboard } from 'lucide-react'; // Using BotIcon for Bot
+import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, UserCircle, LayoutDashboard, Cctv } from 'lucide-react'; // Using BotIcon for Bot
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const navItems = [
-  { href: '/home', label: 'Principal', icon: Home },
+  { href: '/home', label: 'Home', icon: Home },
   { href: '/control-de-perdidas', label: 'Control de Pérdidas', icon: ShieldAlert },
-  { href: '/ccm', label: 'CCM', icon: MessagesSquare },
+  { href: '/ccm', label: 'CCM', icon: Cctv },
   { href: '/security', label: 'Security', icon: Lock },
   { href: '/manager', label: 'Manager', icon: Briefcase },
   { href: '/bot', label: 'BOT', icon: BotIcon },

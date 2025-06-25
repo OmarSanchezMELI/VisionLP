@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { MessagesSquare } from 'lucide-react';
+import { Cctv } from 'lucide-react';
 
 export default function CCMPage() {
   const lookerStudioEmbedUrl = "https://lookerstudio.google.com/embed/reporting/3fe8c1d0-7995-45c8-91b2-0fe6e2e1be76/page/jnuVE";
@@ -9,7 +9,7 @@ export default function CCMPage() {
     <Card className="shadow-lg">
       <CardHeader className="p-4 md:p-6">
         <CardTitle className="text-xl md:text-2xl font-headline flex items-center">
-          <MessagesSquare className="mr-2 h-6 w-6 text-primary" />
+          <Cctv className="mr-2 h-6 w-6 text-primary" />
           CCM
         </CardTitle>
         <CardDescription>Visualización de datos clave para CCM.</CardDescription>
