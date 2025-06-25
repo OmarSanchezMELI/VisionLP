@@ -9,11 +9,11 @@ import Link from 'next/link';
 // --- REPs Availability Feature ---
 
 const repsData = [
-  { usuario: 'Andrés Navarrete', email: 'andres.navarreteleon@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['domingo', 'lunes'] },
-  { usuario: 'Keyla Barbosa', email: 'keylaabril.barbosagonzalez@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['viernes', 'sabado'] },
-  { usuario: 'Jorge Sotero', email: 'jorge.sotero@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['domingo', 'lunes'] },
-  { usuario: 'Esperanza Sánchez', email: 'esperanza.sanchez@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['domingo', 'lunes'] },
-  { usuario: 'Salvador Bautista', email: 'salvador.bautista@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['viernes', 'sabado'] },
+  { usuario: 'Andrés Navarrete', email: 'andres.navarreteleon@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/-fzFYCAAAAE' },
+  { usuario: 'Keyla Barbosa', email: 'keylaabril.barbosagonzalez@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/9n-1YCAAAAE' },
+  { usuario: 'Jorge Sotero', email: 'jorge.sotero@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/zMHVYCAAAAE' },
+  { usuario: 'Esperanza Sánchez', email: 'esperanza.sanchez@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/mgK5YCAAAAE' },
+  { usuario: 'Salvador Bautista', email: 'salvador.bautista@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/ug2NYCAAAAE' },
 ];
 
 const getInitials = (name: string) => {
@@ -25,7 +25,7 @@ const getInitials = (name: string) => {
 };
 
 function RepsEnTurno() {
-  const [onDutyReps, setOnDutyReps] = useState<{ usuario: string; email: string; horario: string; }[]>([]);
+  const [onDutyReps, setOnDutyReps] = useState<(typeof repsData)>([]);
 
   const checkSchedules = useCallback(() => {
     const now = new Date();
@@ -71,10 +71,12 @@ function RepsEnTurno() {
           <ul className="space-y-2">
             {onDutyReps.map((rep) => (
               <li key={rep.usuario} className="flex items-center space-x-2">
-                <Avatar className="h-8 w-8 border-2 border-primary">
-                   <AvatarImage src={`https://avatar.vercel.sh/${rep.email}.png?s=100`} alt={rep.usuario} />
-                  <AvatarFallback>{getInitials(rep.usuario)}</AvatarFallback>
-                </Avatar>
+                <Link href={rep.chatUrl} target="_blank" rel="noopener noreferrer">
+                  <Avatar className="h-8 w-8 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                     <AvatarImage src={`https://avatar.vercel.sh/${rep.email}.png?s=100`} alt={rep.usuario} />
+                    <AvatarFallback>{getInitials(rep.usuario)}</AvatarFallback>
+                  </Avatar>
+                </Link>
                 <div>
                   <p className="font-semibold text-xs">{rep.usuario}</p>
                   <p className="text-xs text-muted-foreground">{rep.horario}</p>
