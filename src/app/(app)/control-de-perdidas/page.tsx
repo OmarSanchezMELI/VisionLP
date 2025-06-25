@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ShieldAlert, Users, Clock } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -57,7 +57,7 @@ function RepsEnTurno() {
 
   useEffect(() => {
     checkSchedules();
-    const intervalId = setInterval(checkSchedules, 60000); // Update every minute
+    const intervalId = setInterval(checkSchedules, 1200000); // Update every 20 minutes
     return () => clearInterval(intervalId);
   }, [checkSchedules]);
 
