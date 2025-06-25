@@ -1,4 +1,3 @@
-
 "use client";
 
 import type { ReactNode } from 'react';
@@ -52,7 +51,9 @@ function AppHeader() {
         <SidebarTrigger onClick={toggleSidebar} />
       </div>
       <div className="hidden md:block">
-         <MercadoLibreLogo className="h-10 w-auto" />
+        <button onClick={toggleSidebar} className="p-0 border-none bg-transparent cursor-pointer" aria-label="Toggle sidebar">
+          <MercadoLibreLogo className="h-10 w-auto" />
+        </button>
       </div>
       <div className="flex w-full items-center justify-end gap-4">
         {user ? (
@@ -112,7 +113,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   }
   
   return (
-    <SidebarProvider defaultOpen>
+    <SidebarProvider defaultOpen={false}>
         <Sidebar variant="sidebar" collapsible="icon" side="left" className="border-r border-sidebar-border shadow-md">
             <SidebarHeader className="p-4 items-center justify-center hidden group-data-[state=expanded]:flex">
                  <MercadoLibreLogo className="h-10 w-auto" />
