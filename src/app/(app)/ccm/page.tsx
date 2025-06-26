@@ -7,14 +7,29 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 
+interface StaffMember {
+  usuario: string;
+  email: string;
+  horario: string;
+  diasNoDisponibles: string[];
+  chatUrl: string;
+}
+
 // --- Datos del personal de CCM ---
 
-const analistaData = [
+const analistaData: StaffMember[] = [
   { usuario: 'Michelle Toscano', email: 'michelle.toscano@mercadolibre.com.mx', horario: '09:00-18:00', diasNoDisponibles: ['sabado', 'domingo'], chatUrl: '#' },
 ];
 
-const monitoristasData: any[] = [
-  // No se proporcionaron monitoristas, se deja vacío.
+const monitoristasData: StaffMember[] = [
+  { usuario: 'Yang Madgiel Castro Zanabria', email: 'yang.castro@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: '#' },
+  { usuario: 'Maria Guadalupe Chavez Morales', email: 'mariaguadalupe.chavez@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: '#' },
+  { usuario: 'Jorge Alberto Chable Ramirez', email: 'jorge.chable@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: '#' },
+  { usuario: 'Samantha Echeverria Roque', email: 'samantha.echeverria@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: '#' },
+  { usuario: 'Juan Revilla Torres', email: 'juan.revilla@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: '#' },
+  { usuario: 'Erick Ulloa', email: 'erick.ulloa@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: '#' },
+  { usuario: 'Roberto Carlos Rodriguez Vega', email: 'robertocarlos.rodriguez@mercadolibre.com.mx', horario: '21:40-06:00', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: '#' },
+  { usuario: 'Ricardo Javier Solorio Martinez', email: 'ricardo.solorio@mercadolibre.com.mx', horario: '21:40-06:00', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: '#' },
 ];
 
 const getInitials = (name: string) => {
@@ -28,8 +43,8 @@ const getInitials = (name: string) => {
 // --- Componente de Disponibilidad del Personal de CCM ---
 
 function CcmStaffEnTurno() {
-  const [onDutyAnalistas, setOnDutyAnalistas] = useState<(typeof analistaData)>([]);
-  const [onDutyMonitoristas, setOnDutyMonitoristas] = useState<(typeof monitoristasData)>([]);
+  const [onDutyAnalistas, setOnDutyAnalistas] = useState<StaffMember[]>([]);
+  const [onDutyMonitoristas, setOnDutyMonitoristas] = useState<StaffMember[]>([]);
 
   const checkSchedules = useCallback(() => {
     const now = new Date();
@@ -42,11 +57,18 @@ function CcmStaffEnTurno() {
 
     const currentTime = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Mexico_City', hour12: false }).format(now);
 
-    const filterAvailable = (data: typeof analistaData) => data.filter(person => {
+    const filterAvailable = (data: StaffMember[]) => data.filter(person => {
       if (person.diasNoDisponibles.includes(dayOfWeek)) {
         return false;
       }
       const [startTime, endTime] = person.horario.split('-');
+      
+      // Handle overnight shifts
+      if (startTime > endTime) {
+        return currentTime >= startTime || currentTime <= endTime;
+      }
+      
+      // Handle regular shifts
       return currentTime >= startTime && currentTime <= endTime;
     });
 
@@ -60,7 +82,7 @@ function CcmStaffEnTurno() {
     return () => clearInterval(intervalId);
   }, [checkSchedules]);
 
-  const renderStaffList = (staff: (typeof analistaData), emptyMessage: string) => {
+  const renderStaffList = (staff: StaffMember[], emptyMessage: string) => {
     if (staff.length > 0) {
       return (
         <ul className="space-y-2">
