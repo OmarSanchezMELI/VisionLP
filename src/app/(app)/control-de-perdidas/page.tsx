@@ -100,7 +100,7 @@ function RepsEnTurno() {
 export default function ControlDePerdidasPage() {
   const lookerStudioEmbedUrl = "https://lookerstudio.google.com/embed/reporting/2a1228bc-36fb-4f28-8190-38a5149ee670/page/p_t5v3dj3pnd";
   const chatUrl = "https://mail.google.com/chat/u/0/#chat/dm/00i2ncAAAAE";
-  const didierEmail = "alexis.tolentinorivera@mercadolibre.com.mx";
+  const didierPhotoUrl = "https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/unnamed.webp";
 
   return (
     <Card className="shadow-lg">
@@ -117,7 +117,7 @@ export default function ControlDePerdidasPage() {
             <div className="flex items-center space-x-4">
               <Link href={chatUrl} target="_blank" rel="noopener noreferrer" className="shrink-0">
                 <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
-                  <AvatarImage src={`https://avatar.vercel.sh/${didierEmail}.png?s=100`} alt="Foto de Didier Tolentino" />
+                  <AvatarImage src={didierPhotoUrl} alt="Foto de Didier Tolentino" />
                   <AvatarFallback>DT</AvatarFallback>
                 </Avatar>
               </Link>
