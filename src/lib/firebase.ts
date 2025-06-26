@@ -1,6 +1,6 @@
 // src/lib/firebase.ts
-import { initializeApp, getApps, getApp, FirebaseApp } from 'firebase/app';
-import { getFirestore, Firestore } from 'firebase/firestore';
+import { initializeApp, getApps, getApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -12,24 +12,9 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-let app: FirebaseApp;
-
-// Inicializa Firebase solo si no se ha hecho antes
-if (!getApps().length) {
-  // Asegúrate de que la API key exista antes de inicializar
-  if (firebaseConfig.apiKey) {
-    app = initializeApp(firebaseConfig);
-  } else {
-    // Esto previene que la app se bloquee y ayuda a depurar.
-    console.error("Error: La API key de Firebase no se encontró. Asegúrate de que las variables de entorno en tu archivo .env.local estén definidas y tengan el prefijo NEXT_PUBLIC_.");
-    app = null!; // Asigna null para evitar más errores
-  }
-} else {
-  app = getApp();
-}
-
-// Exporta los servicios de Firebase de forma condicional para evitar errores
-const db: Firestore = app ? getFirestore(app) : null!;
-const auth = app ? getAuth(app) : null!;
+// Initialize Firebase
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const db = getFirestore(app);
+const auth = getAuth(app);
 
 export { app, db, auth };
