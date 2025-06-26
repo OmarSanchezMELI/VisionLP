@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { ReactNode } from 'react';
@@ -125,15 +126,15 @@ export default function AppLayout({ children }: { children: ReactNode }) {
             <SidebarMenu>
                 {navItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
-                    <Link href={item.href} passHref legacyBehavior>
-                    <SidebarMenuButton
-                        isActive={pathname === item.href || (item.href !== '/home' && pathname.startsWith(item.href))}
-                        tooltip={{children: item.label, side: "right", className: "bg-primary text-primary-foreground"}}
-                        aria-label={item.label}
-                    >
-                        <item.icon className="h-5 w-5" />
-                        <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
-                    </SidebarMenuButton>
+                    <Link href={item.href}>
+                      <SidebarMenuButton
+                          isActive={pathname === item.href || (item.href !== '/home' && pathname.startsWith(item.href))}
+                          tooltip={{children: item.label, side: "right", className: "bg-primary text-primary-foreground"}}
+                          aria-label={item.label}
+                      >
+                          <item.icon className="h-5 w-5" />
+                          <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
+                      </SidebarMenuButton>
                     </Link>
                 </SidebarMenuItem>
                 ))}
