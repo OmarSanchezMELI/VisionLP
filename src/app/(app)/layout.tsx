@@ -32,6 +32,7 @@ import {
 import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, UserCircle, LayoutDashboard, Cctv } from 'lucide-react'; // Using BotIcon for Bot
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
+import { NotificationListener } from '@/components/NotificationListener';
 
 const navItems = [
   { href: '/home', label: 'Home', icon: Home },
@@ -151,6 +152,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
             <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 bg-background">
                 {children}
             </main>
+            <NotificationListener />
         </SidebarInset>
     </SidebarProvider>
   );
