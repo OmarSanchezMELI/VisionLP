@@ -1,9 +1,11 @@
 
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { BotIcon, Database, BarChart3 } from 'lucide-react';
+import { BotIcon, Database, BarChart3, ExternalLink } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 const reportesRegionales = [
   {
@@ -66,32 +68,35 @@ export default function BotPage() {
           
           <TabsContent value="regionales" className="mt-6">
             <p className="text-sm text-muted-foreground mb-4">
-              Selecciona una pestaña para visualizar el reporte de Tableau.
+              Estos son los principales tableros regionales. Haz clic en el botón para abrirlos en una nueva pestaña.
             </p>
-            <Tabs defaultValue={reportesRegionales[0].name} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 h-auto">
-                {reportesRegionales.map((reporte) => (
-                  <TabsTrigger key={reporte.name} value={reporte.name} className="py-2">
-                    {reporte.name}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {reportesRegionales.map((reporte) => (
-                <TabsContent key={reporte.name} value={reporte.name} className="mt-4">
-                  <div className="h-[600px] md:h-auto md:aspect-[16/9] w-full rounded-lg overflow-hidden border">
-                      <iframe
-                          title={reporte.name}
-                          width="100%"
-                          height="100%"
-                          src={reporte.url}
-                          allowFullScreen
-                          sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-popups-to-escape-sandbox"
-                          className="border-0"
-                      ></iframe>
-                  </div>
-                </TabsContent>
+                <Card key={reporte.name} className="flex flex-col shadow-md hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <CardTitle className="text-lg">{reporte.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-grow flex items-center justify-center">
+                    <div className="aspect-video w-full rounded-lg overflow-hidden border bg-muted/20">
+                      <img
+                        data-ai-hint="dashboard chart"
+                        src="https://placehold.co/600x400.png"
+                        alt={`Vista previa del tablero ${reporte.name}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <Button asChild className="w-full">
+                      <Link href={reporte.url} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Ir al Tablero
+                      </Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
               ))}
-            </Tabs>
+            </div>
           </TabsContent>
 
           <TabsContent value="in-house" className="mt-6">
