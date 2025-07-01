@@ -32,11 +32,57 @@ import {
   SidebarInset,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, Cctv, ChevronDown, FileSearch, ClipboardList } from 'lucide-react';
+import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, Cctv, ChevronDown, FileSearch, ClipboardList, Siren } from 'lucide-react';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import { getISOWeek } from 'date-fns';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+
+
+function WarRoomButton() {
+  const meetUrl = "https://meet.google.com/gjp-iicp-jwd";
+
+  const handleConfirm = () => {
+    window.open(meetUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="destructive">
+          <Siren className="mr-2 h-4 w-4" />
+          War Room Siniestros
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Confirmación de Acción Urgente</AlertDialogTitle>
+          <AlertDialogDescription>
+            ¿Estas seguro de que quieres unirte al War Room de Siniestros? Esta acción es para emergencias.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancelar</AlertDialogCancel>
+          <AlertDialogAction onClick={handleConfirm}>
+            Unirme ahora
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+
 
 function AppHeader() {
   const { user, logout } = useAuth();
@@ -54,6 +100,7 @@ function AppHeader() {
         <SidebarTrigger onClick={toggleSidebar} />
       </div>
       <div className="flex items-center justify-end gap-4">
+        <WarRoomButton />
         {week ? (
           <div className="text-sm font-medium text-muted-foreground">
             Estamos en {week}
@@ -178,10 +225,12 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                         {openSubmenus[item.label] && (
                           <SidebarMenuSub>
                             {item.subItems.map((subItem) => (
-                              <SidebarMenuSubItem key={subItem.href}>
-                                <SidebarMenuSubButton asChild isActive={pathname === subItem.href}>
-                                  <Link href={subItem.href}>{subItem.label}</Link>
-                                </SidebarMenuSubButton>
+                               <SidebarMenuSubItem key={subItem.href}>
+                                <Link href={subItem.href} passHref legacyBehavior>
+                                  <SidebarMenuSubButton asChild isActive={pathname === subItem.href}>
+                                    <a>{subItem.label}</a>
+                                  </SidebarMenuSubButton>
+                                </Link>
                               </SidebarMenuSubItem>
                             ))}
                           </SidebarMenuSub>
