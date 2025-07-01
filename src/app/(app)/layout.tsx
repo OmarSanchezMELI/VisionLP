@@ -49,11 +49,11 @@ function AppHeader() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
-      <div className="md:hidden">
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
+       <div className="flex items-center gap-4">
         <SidebarTrigger onClick={toggleSidebar} />
       </div>
-      <div className="flex w-full items-center justify-end gap-4">
+      <div className="flex items-center justify-end gap-4">
         {week ? (
           <div className="text-sm font-medium text-muted-foreground">
             Estamos en {week}
@@ -179,25 +179,26 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                           <SidebarMenuSub>
                             {item.subItems.map((subItem) => (
                               <SidebarMenuSubItem key={subItem.href}>
-                                <Link href={subItem.href} passHref legacyBehavior>
-                                  <SidebarMenuSubButton asChild isActive={pathname === subItem.href}>
-                                    <a>{subItem.label}</a>
-                                  </SidebarMenuSubButton>
-                                </Link>
+                                <SidebarMenuSubButton asChild isActive={pathname === subItem.href}>
+                                  <Link href={subItem.href}>{subItem.label}</Link>
+                                </SidebarMenuSubButton>
                               </SidebarMenuSubItem>
                             ))}
                           </SidebarMenuSub>
                         )}
                       </>
                     ) : (
-                      <Link href={item.href!} asChild>
+                      <Link href={item.href!} passHref>
                         <SidebarMenuButton
+                            asChild
                             isActive={pathname === item.href || (item.href !== '/home' && pathname.startsWith(item.href!))}
                             tooltip={{children: item.label, side: "right", className: "bg-primary text-primary-foreground"}}
                             aria-label={item.label}
                         >
-                            <item.icon className="h-5 w-5" />
-                            <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
+                            <a>
+                                <item.icon className="h-5 w-5" />
+                                <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
+                            </a>
                         </SidebarMenuButton>
                       </Link>
                     )}
