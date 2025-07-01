@@ -6,19 +6,19 @@ import { BotIcon, BarChart3 } from 'lucide-react';
 const reportes = [
   {
     name: 'FPP Steerco',
-    url: 'https://tableau.adminml.com/#/site/Shipping/views/TableroSteercoEstimado/FPPNegocio?:iid=1',
+    url: 'https://tableau.adminml.com/t/Shipping/views/TableroSteercoEstimado/FPPNegocio?:embed=y&:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link',
   },
   {
     name: 'Pending Lost',
-    url: 'https://tableau.adminml.com/#/site/Shipping/views/PendingLost/PendingLost?:iid=1',
+    url: 'https://tableau.adminml.com/t/Shipping/views/PendingLost/PendingLost?:embed=y&:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link',
   },
   {
     name: 'Pending Damaged',
-    url: 'https://tableau.adminml.com/#/site/Shipping/views/Pendingdamagebq/PendingDamagedDr?:iid=1',
+    url: 'https://tableau.adminml.com/t/Shipping/views/Pendingdamagebq/PendingDamagedDr?:embed=y&:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link',
   },
   {
     name: 'Pagos Manuales',
-    url: 'https://tableau.adminml.com/#/site/Shipping/views/Ticketsmanualpay_16571470893210/Generalestotaldetickets?:iid=2',
+    url: 'https://tableau.adminml.com/t/Shipping/views/Ticketsmanualpay_16571470893210/Generalestotaldetickets?:embed=y&:showAppBanner=false&:display_count=n&:showVizHome=n&:origin=viz_share_link',
   },
 ];
 
