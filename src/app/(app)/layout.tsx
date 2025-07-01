@@ -168,7 +168,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                           <SidebarMenuSub>
                             {item.subItems.map((subItem) => (
                               <SidebarMenuSubItem key={subItem.href}>
-                                <Link href={subItem.href} passHref legacyBehavior>
+                                <Link href={subItem.href} asChild>
                                   <SidebarMenuSubButton isActive={pathname === subItem.href}>
                                     <span>{subItem.label}</span>
                                   </SidebarMenuSubButton>
