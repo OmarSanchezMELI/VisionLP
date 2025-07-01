@@ -76,14 +76,16 @@ export default function BotPage() {
                   <CardHeader>
                     <CardTitle className="text-lg">{reporte.name}</CardTitle>
                   </CardHeader>
-                  <CardContent className="flex-grow flex items-center justify-center">
-                    <div className="aspect-video w-full rounded-lg overflow-hidden border bg-muted/20">
-                      <img
-                        data-ai-hint="dashboard chart"
-                        src="https://placehold.co/600x400.png"
-                        alt={`Vista previa del tablero ${reporte.name}`}
-                        className="w-full h-full object-cover"
-                      />
+                  <CardContent className="flex-grow">
+                    <div className="aspect-video w-full rounded-lg overflow-hidden border">
+                      <iframe
+                        title={reporte.name}
+                        width="100%"
+                        height="100%"
+                        src={reporte.url}
+                        sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-popups-to-escape-sandbox"
+                        className="border-0"
+                      ></iframe>
                     </div>
                   </CardContent>
                   <CardFooter>
