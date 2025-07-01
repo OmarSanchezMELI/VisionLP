@@ -22,13 +22,13 @@ const reportes = [
   },
 ];
 
-export default function BOTPage() {
+export default function TablerosRegionalesPage() {
   return (
     <Card className="shadow-lg">
       <CardHeader>
         <CardTitle className="text-xl md:text-2xl font-headline flex items-center">
           <BotIcon className="mr-2 h-6 w-6 text-primary" />
-          BOT
+          BOT - Tableros Regionales
         </CardTitle>
         <CardDescription>
           Automatización y visualización de reportes regionales de Tableau.

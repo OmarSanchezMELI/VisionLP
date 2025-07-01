@@ -1,7 +1,8 @@
+
 "use client";
 
 import type { ReactNode } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { MercadoLibreLogo } from '@/components/MercadoLibreLogo';
@@ -24,22 +25,17 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
   SidebarTrigger,
   SidebarInset,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, Cctv } from 'lucide-react'; // Using BotIcon for Bot
+import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, Cctv, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
-
-const navItems = [
-  { href: '/home', label: 'Home', icon: Home },
-  { href: '/control-de-perdidas', label: 'Control de Pérdidas', icon: ShieldAlert },
-  { href: '/ccm', label: 'CCM', icon: Cctv },
-  { href: '/security', label: 'Security', icon: Lock },
-  { href: '/manager', label: 'Manager', icon: Briefcase },
-  { href: '/bot', label: 'BOT', icon: BotIcon },
-];
+import { cn } from '@/lib/utils';
 
 function AppHeader() {
   const { user, logout } = useAuth();
@@ -97,11 +93,37 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
 
+  const isBotSectionActive = pathname.startsWith('/bot') || pathname === '/tableros-in-house';
+
+  const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({
+    BOT: isBotSectionActive,
+  });
+
+  const toggleSubmenu = (label: string) => {
+    setOpenSubmenus(prev => ({ ...prev, [label]: !prev[label] }));
+  };
+
   useEffect(() => {
     if (!isLoading && !user) {
       router.replace('/login');
     }
   }, [user, isLoading, router]);
+
+  const navItems = [
+    { href: '/home', label: 'Home', icon: Home },
+    { href: '/control-de-perdidas', label: 'Control de Pérdidas', icon: ShieldAlert },
+    { href: '/ccm', label: 'CCM', icon: Cctv },
+    { href: '/security', label: 'Security', icon: Lock },
+    { href: '/manager', label: 'Manager', icon: Briefcase },
+    {
+      label: 'BOT',
+      icon: BotIcon,
+      subItems: [
+        { href: '/tableros-in-house', label: 'Tableros In House' },
+        { href: '/bot', label: 'Tableros Regionales' },
+      ],
+    },
+  ];
 
   if (isLoading || !user) {
     return (
@@ -114,24 +136,60 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   
   return (
     <SidebarProvider defaultOpen={false}>
-        <Sidebar variant="sidebar" collapsible="icon" side="left" className="border-r border-sidebar-border shadow-md">
+        <Sidebar variant="sidebar" collapsible="icon" side="left" className="border-r border-sidebar-border shadow-md z-40">
             <SidebarHeader className="p-4 items-center justify-center hidden group-data-[state=expanded]:flex">
                  <MercadoLibreLogo className="h-10 w-auto" />
             </SidebarHeader>
             <SidebarContent className="p-2">
             <SidebarMenu>
                 {navItems.map((item) => (
-                <SidebarMenuItem key={item.href}>
-                    <Link href={item.href}>
-                      <SidebarMenuButton
-                          isActive={pathname === item.href || (item.href !== '/home' && pathname.startsWith(item.href))}
+                <SidebarMenuItem key={item.label}>
+                    {item.subItems ? (
+                      <>
+                        <SidebarMenuButton
+                          onClick={() => toggleSubmenu(item.label)}
+                          isActive={isBotSectionActive}
                           tooltip={{children: item.label, side: "right", className: "bg-primary text-primary-foreground"}}
                           aria-label={item.label}
-                      >
-                          <item.icon className="h-5 w-5" />
-                          <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
-                      </SidebarMenuButton>
-                    </Link>
+                          className="justify-between"
+                        >
+                          <div className="flex items-center gap-2">
+                            <item.icon className="h-5 w-5" />
+                            <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
+                          </div>
+                          <ChevronDown
+                            className={cn(
+                              "h-4 w-4 shrink-0 transition-transform duration-200 group-data-[collapsible=icon]:hidden",
+                              openSubmenus[item.label] && "rotate-180"
+                            )}
+                          />
+                        </SidebarMenuButton>
+                        {openSubmenus[item.label] && (
+                          <SidebarMenuSub>
+                            {item.subItems.map((subItem) => (
+                              <SidebarMenuSubItem key={subItem.href}>
+                                <Link href={subItem.href} passHref legacyBehavior>
+                                  <SidebarMenuSubButton isActive={pathname === subItem.href}>
+                                    <span>{subItem.label}</span>
+                                  </SidebarMenuSubButton>
+                                </Link>
+                              </SidebarMenuSubItem>
+                            ))}
+                          </SidebarMenuSub>
+                        )}
+                      </>
+                    ) : (
+                      <Link href={item.href!}>
+                        <SidebarMenuButton
+                            isActive={pathname === item.href || (item.href !== '/home' && pathname.startsWith(item.href!))}
+                            tooltip={{children: item.label, side: "right", className: "bg-primary text-primary-foreground"}}
+                            aria-label={item.label}
+                        >
+                            <item.icon className="h-5 w-5" />
+                            <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
+                        </SidebarMenuButton>
+                      </Link>
+                    )}
                 </SidebarMenuItem>
                 ))}
             </SidebarMenu>
