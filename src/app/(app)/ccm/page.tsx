@@ -18,18 +18,18 @@ interface StaffMember {
 // --- Datos del personal de CCM ---
 
 const analistaData: StaffMember[] = [
-  { usuario: 'Michelle Toscano', email: 'michelle.toscano@mercadolibre.com.mx', horario: '09:00-18:00', diasNoDisponibles: ['sabado', 'domingo'], chatUrl: '#' },
+  { usuario: 'Michelle Toscano', email: 'michelle.toscano@mercadolibre.com.mx', horario: '09:00-18:00', diasNoDisponibles: ['sabado', 'domingo'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jCzykCAAAAE' },
 ];
 
 const monitoristasData: StaffMember[] = [
-  { usuario: 'Yang Madgiel Castro Zanabria', email: 'yang.castro@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: '#' },
-  { usuario: 'Maria Guadalupe Chavez Morales', email: 'mariaguadalupe.chavez@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: '#' },
-  { usuario: 'Jorge Alberto Chable Ramirez', email: 'jorge.chable@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: '#' },
-  { usuario: 'Samantha Echeverria Roque', email: 'samantha.echeverria@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: '#' },
-  { usuario: 'Juan Revilla Torres', email: 'juan.revilla@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: '#' },
-  { usuario: 'Erick Ulloa', email: 'erick.ulloa@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: '#' },
-  { usuario: 'Roberto Carlos Rodriguez Vega', email: 'robertocarlos.rodriguez@mercadolibre.com.mx', horario: '21:40-06:00', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: '#' },
-  { usuario: 'Ricardo Javier Solorio Martinez', email: 'ricardo.solorio@mercadolibre.com.mx', horario: '21:40-06:00', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: '#' },
+  { usuario: 'Yang Madgiel Castro Zanabria', email: 'yang.castro@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/obfekCAAAAE' },
+  { usuario: 'Maria Guadalupe Chavez Morales', email: 'mariaguadalupe.chavez@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/4dAukCAAAAE' },
+  { usuario: 'Jorge Alberto Chable Ramirez', email: 'jorge.chable@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/7OvukCAAAAE' },
+  { usuario: 'Samantha Echeverria Roque', email: 'samantha.echeverria@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/pFCukCAAAAE' },
+  { usuario: 'Juan Revilla Torres', email: 'juan.revilla@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jYkOkCAAAAE' },
+  { usuario: 'Erick Ulloa', email: 'erick.ulloa@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/0kVukCAAAAE' },
+  { usuario: 'Roberto Carlos Rodriguez Vega', email: 'robertocarlos.rodriguez@mercadolibre.com.mx', horario: '21:40-06:00', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/7LrukCAAAAE' },
+  { usuario: 'Ricardo Javier Solorio Martinez', email: 'ricardo.solorio@mercadolibre.com.mx', horario: '21:40-06:00', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/6l2-kCAAAAE' },
 ];
 
 const getInitials = (name: string) => {
@@ -139,6 +139,7 @@ function CcmStaffEnTurno() {
 export default function CCMPage() {
   const lookerStudioEmbedUrl = "https://lookerstudio.google.com/embed/reporting/3fe8c1d0-7995-45c8-91b2-0fe6e2e1be76/page/jnuVE";
   const alejandraPhotoUrl = "https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Alejandra%20Lucero.jpeg";
+  const alejandraChatUrl = "https://mail.google.com/chat/u/0/#chat/dm/_DHukCAAAAE";
 
   return (
     <Card className="shadow-lg">
@@ -153,10 +154,12 @@ export default function CCMPage() {
         <div className="space-y-6 pt-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
             <div className="flex items-center space-x-4">
-              <Avatar className="h-24 w-24 border-2 border-primary">
-                <AvatarImage src={alejandraPhotoUrl} alt="Foto de Alejandra Lucero" />
-                <AvatarFallback>AL</AvatarFallback>
-              </Avatar>
+              <Link href={alejandraChatUrl} target="_blank" rel="noopener noreferrer" className="shrink-0">
+                <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                  <AvatarImage src={alejandraPhotoUrl} alt="Foto de Alejandra Lucero" />
+                  <AvatarFallback>AL</AvatarFallback>
+                </Avatar>
+              </Link>
               <div>
                 <h3 className="text-xl font-bold">Alejandra Lucero</h3>
                 <p className="text-md text-muted-foreground">Líder de CCM</p>
