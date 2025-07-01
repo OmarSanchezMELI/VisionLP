@@ -25,17 +25,13 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarMenuSub,
-  SidebarMenuSubItem,
-  SidebarMenuSubButton,
   SidebarTrigger,
   SidebarInset,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, Cctv, ChevronDown, FileSearch, ClipboardList, Siren } from 'lucide-react';
+import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, Cctv, FileSearch, ClipboardList, Siren } from 'lucide-react';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
-import { cn } from '@/lib/utils';
 import { getISOWeek } from 'date-fns';
 import {
   AlertDialog,
@@ -149,16 +145,6 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isBotSectionActive = pathname.startsWith('/bot') || pathname === '/tableros-in-house';
-
-  const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({
-    BOT: isBotSectionActive,
-  });
-
-  const toggleSubmenu = (label: string) => {
-    setOpenSubmenus(prev => ({ ...prev, [label]: !prev[label] }));
-  };
-
   useEffect(() => {
     if (!isLoading && !user) {
       router.replace('/login');
@@ -172,14 +158,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     { href: '/security', label: 'Security', icon: Lock },
     { href: '/investigaciones', label: 'Investigaciones', icon: FileSearch },
     { href: '/manager', label: 'Manager', icon: Briefcase },
-    {
-      label: 'BOT',
-      icon: BotIcon,
-      subItems: [
-        { href: '/tableros-in-house', label: 'Tableros In House' },
-        { href: '/bot', label: 'Tableros Regionales' },
-      ],
-    },
+    { href: '/bot', label: 'BOT', icon: BotIcon },
     { href: '/gestion-lp', label: 'Gestión LP', icon: ClipboardList },
   ];
 
@@ -202,55 +181,19 @@ export default function AppLayout({ children }: { children: ReactNode }) {
             <SidebarMenu>
                 {navItems.map((item) => (
                 <SidebarMenuItem key={item.label}>
-                    {item.subItems ? (
-                      <>
-                        <SidebarMenuButton
-                          onClick={() => toggleSubmenu(item.label)}
-                          isActive={isBotSectionActive}
-                          tooltip={{children: item.label, side: "right", className: "bg-primary text-primary-foreground"}}
-                          aria-label={item.label}
-                          className="justify-between"
-                        >
-                          <div className="flex items-center gap-2">
+                  <Link href={item.href!} passHref>
+                    <SidebarMenuButton
+                        asChild
+                        isActive={pathname === item.href || (item.href !== '/home' && pathname.startsWith(item.href!))}
+                        tooltip={{children: item.label, side: "right", className: "bg-primary text-primary-foreground"}}
+                        aria-label={item.label}
+                    >
+                        <a>
                             <item.icon className="h-5 w-5" />
                             <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
-                          </div>
-                          <ChevronDown
-                            className={cn(
-                              "h-4 w-4 shrink-0 transition-transform duration-200 group-data-[collapsible=icon]:hidden",
-                              openSubmenus[item.label] && "rotate-180"
-                            )}
-                          />
-                        </SidebarMenuButton>
-                        {openSubmenus[item.label] && (
-                          <SidebarMenuSub>
-                            {item.subItems.map((subItem) => (
-                               <SidebarMenuSubItem key={subItem.href}>
-                                <Link href={subItem.href} passHref legacyBehavior>
-                                  <SidebarMenuSubButton asChild isActive={pathname === subItem.href}>
-                                    <a>{subItem.label}</a>
-                                  </SidebarMenuSubButton>
-                                </Link>
-                              </SidebarMenuSubItem>
-                            ))}
-                          </SidebarMenuSub>
-                        )}
-                      </>
-                    ) : (
-                      <Link href={item.href!} passHref>
-                        <SidebarMenuButton
-                            asChild
-                            isActive={pathname === item.href || (item.href !== '/home' && pathname.startsWith(item.href!))}
-                            tooltip={{children: item.label, side: "right", className: "bg-primary text-primary-foreground"}}
-                            aria-label={item.label}
-                        >
-                            <a>
-                                <item.icon className="h-5 w-5" />
-                                <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
-                            </a>
-                        </SidebarMenuButton>
-                      </Link>
-                    )}
+                        </a>
+                    </SidebarMenuButton>
+                  </Link>
                 </SidebarMenuItem>
                 ))}
             </SidebarMenu>
