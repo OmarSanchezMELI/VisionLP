@@ -42,13 +42,13 @@ function AppHeader() {
   const { toggleSidebar } = useSidebar();
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
+    <header className="sticky top-0 z-50 flex h-16 items-center gap-4 border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
       <div className="md:hidden">
         <SidebarTrigger onClick={toggleSidebar} />
       </div>
       <div className="hidden md:block">
         <button onClick={toggleSidebar} className="p-0 border-none bg-transparent cursor-pointer" aria-label="Toggle sidebar">
-          <MercadoLibreLogo className="h-10 w-auto" />
+          <h1 className="text-lg font-bold">Visión - LP</h1>
         </button>
       </div>
       <div className="flex w-full items-center justify-end gap-4">
@@ -140,7 +140,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     <SidebarProvider defaultOpen={false}>
         <Sidebar variant="sidebar" collapsible="icon" side="left" className="border-r border-sidebar-border shadow-md z-40">
             <SidebarHeader className="p-4 items-center justify-center hidden group-data-[state=expanded]:flex">
-                 <MercadoLibreLogo className="h-10 w-auto" />
+                 
             </SidebarHeader>
             <SidebarContent className="p-2">
             <SidebarMenu>
