@@ -28,7 +28,7 @@ import {
   SidebarInset,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, UserCircle, LayoutDashboard, Cctv } from 'lucide-react'; // Using BotIcon for Bot
+import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, Cctv } from 'lucide-react'; // Using BotIcon for Bot
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -119,7 +119,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                  <MercadoLibreLogo className="h-10 w-auto" />
             </SidebarHeader>
             <SidebarHeader className="p-3.5 items-center justify-center flex group-data-[state=expanded]:hidden">
-                <UserCircle className="h-7 w-7 text-primary" />
+                <MercadoLibreLogo className="h-7 w-auto" />
             </SidebarHeader>
             <SidebarContent className="p-2">
             <SidebarMenu>
