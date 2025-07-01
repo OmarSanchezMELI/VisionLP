@@ -170,11 +170,11 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                           <SidebarMenuSub>
                             {item.subItems.map((subItem) => (
                               <SidebarMenuSubItem key={subItem.href}>
-                                <Link href={subItem.href} asChild>
-                                  <SidebarMenuSubButton isActive={pathname === subItem.href}>
+                                <SidebarMenuSubButton asChild isActive={pathname === subItem.href}>
+                                  <Link href={subItem.href}>
                                     <span>{subItem.label}</span>
-                                  </SidebarMenuSubButton>
-                                </Link>
+                                  </Link>
+                                </SidebarMenuSubButton>
                               </SidebarMenuSubItem>
                             ))}
                           </SidebarMenuSub>
