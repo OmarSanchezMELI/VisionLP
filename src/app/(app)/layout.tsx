@@ -36,22 +36,31 @@ import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, C
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
+import { getISOWeek } from 'date-fns';
 
 function AppHeader() {
   const { user, logout } = useAuth();
   const { toggleSidebar } = useSidebar();
+  const [week, setWeek] = useState('');
+
+  useEffect(() => {
+    // To avoid hydration mismatch, we calculate the week number on the client.
+    setWeek(`W${getISOWeek(new Date())}`);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 flex h-16 items-center gap-4 border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
+    <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
       <div className="md:hidden">
         <SidebarTrigger onClick={toggleSidebar} />
       </div>
-      <div className="hidden md:block">
-        <button onClick={toggleSidebar} className="p-0 border-none bg-transparent cursor-pointer" aria-label="Toggle sidebar">
-          <h1 className="text-lg font-bold">Visión - LP</h1>
-        </button>
-      </div>
       <div className="flex w-full items-center justify-end gap-4">
+        {week ? (
+          <div className="text-sm font-medium text-muted-foreground">
+            Estamos en {week}
+          </div>
+        ) : (
+          <Skeleton className="h-5 w-24" />
+        )}
         {user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -140,7 +149,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     <SidebarProvider defaultOpen={false}>
         <Sidebar variant="sidebar" collapsible="icon" side="left" className="border-r border-sidebar-border shadow-md z-40">
             <SidebarHeader className="p-4 items-center justify-center hidden group-data-[state=expanded]:flex">
-                 
+                 <MercadoLibreLogo className="w-auto h-10" />
             </SidebarHeader>
             <SidebarContent className="p-2">
             <SidebarMenu>
@@ -170,11 +179,11 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                           <SidebarMenuSub>
                             {item.subItems.map((subItem) => (
                               <SidebarMenuSubItem key={subItem.href}>
-                                <SidebarMenuSubButton asChild isActive={pathname === subItem.href}>
-                                  <Link href={subItem.href}>
-                                    <span>{subItem.label}</span>
-                                  </Link>
-                                </SidebarMenuSubButton>
+                                <Link href={subItem.href} passHref legacyBehavior>
+                                  <SidebarMenuSubButton asChild isActive={pathname === subItem.href}>
+                                    <a>{subItem.label}</a>
+                                  </SidebarMenuSubButton>
+                                </Link>
                               </SidebarMenuSubItem>
                             ))}
                           </SidebarMenuSub>
