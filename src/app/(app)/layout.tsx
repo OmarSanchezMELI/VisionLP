@@ -1,4 +1,3 @@
-
 "use client";
 
 import type { ReactNode } from 'react';
@@ -82,7 +81,6 @@ function WarRoomButton() {
 
 function AppHeader() {
   const { user, logout } = useAuth();
-  const { toggleSidebar } = useSidebar();
   const [week, setWeek] = useState('');
 
   useEffect(() => {
@@ -93,7 +91,7 @@ function AppHeader() {
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
        <div className="flex items-center gap-4">
-        <SidebarTrigger onClick={toggleSidebar} />
+        <SidebarTrigger />
       </div>
       <div className="flex items-center justify-end gap-4">
         <WarRoomButton />
