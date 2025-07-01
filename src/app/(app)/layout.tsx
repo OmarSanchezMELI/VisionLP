@@ -32,7 +32,7 @@ import {
   SidebarInset,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, Cctv, ChevronDown } from 'lucide-react';
+import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, Cctv, ChevronDown, FileSearch, ClipboardList } from 'lucide-react';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
@@ -114,6 +114,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     { href: '/control-de-perdidas', label: 'Control de Pérdidas', icon: ShieldAlert },
     { href: '/ccm', label: 'CCM', icon: Cctv },
     { href: '/security', label: 'Security', icon: Lock },
+    { href: '/investigaciones', label: 'Investigaciones', icon: FileSearch },
     { href: '/manager', label: 'Manager', icon: Briefcase },
     {
       label: 'BOT',
@@ -123,6 +124,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         { href: '/bot', label: 'Tableros Regionales' },
       ],
     },
+    { href: '/gestion-lp', label: 'Gestión LP', icon: ClipboardList },
   ];
 
   if (isLoading || !user) {
@@ -179,7 +181,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                         )}
                       </>
                     ) : (
-                      <Link href={item.href!}>
+                      <Link href={item.href!} asChild>
                         <SidebarMenuButton
                             isActive={pathname === item.href || (item.href !== '/home' && pathname.startsWith(item.href!))}
                             tooltip={{children: item.label, side: "right", className: "bg-primary text-primary-foreground"}}
