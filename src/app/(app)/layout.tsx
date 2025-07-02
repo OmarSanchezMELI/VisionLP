@@ -43,7 +43,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import { WeatherDisplay } from '@/components/WeatherDisplay';
 
 
 function WarRoomButton() {
@@ -90,7 +89,6 @@ function AppHeader() {
       </div>
       <div className="flex items-center justify-end gap-4">
         <WarRoomButton />
-        <WeatherDisplay />
         {user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
