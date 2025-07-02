@@ -136,7 +136,7 @@ function CcmStaffEnTurno() {
 
 // --- Componente Principal de la Página CCM ---
 
-export default function CCMPage() {
+export default function CCMLPPage() {
   const lookerStudioEmbedUrl = "https://lookerstudio.google.com/embed/reporting/3fe8c1d0-7995-45c8-91b2-0fe6e2e1be76/page/jnuVE";
   const alejandraPhotoUrl = "https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Alejandra%20Lucero.jpeg";
   const alejandraChatUrl = "https://mail.google.com/chat/u/0/#chat/dm/_DHukCAAAAE";
