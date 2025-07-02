@@ -153,7 +153,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   const navItems = [
     { href: '/home', label: 'Home', icon: Home },
     { href: '/control-de-perdidas', label: 'Control de Pérdidas', icon: ShieldAlert },
-    { href: '/ccm', label: 'CCM', icon: Video },
+    { href: '/ccm-lp', label: 'CCM', icon: Video },
     { href: '/security', label: 'Security', icon: Lock },
     { href: '/investigaciones', label: 'Investigaciones', icon: FileSearch },
     { href: '/manager', label: 'Manager', icon: Briefcase },
@@ -180,19 +180,17 @@ export default function AppLayout({ children }: { children: ReactNode }) {
             <SidebarMenu>
                 {navItems.map((item) => (
                 <SidebarMenuItem key={item.label}>
-                  <Link href={item.href!} passHref>
                     <SidebarMenuButton
                         asChild
                         isActive={pathname === item.href || (item.href !== '/home' && pathname.startsWith(item.href!))}
                         tooltip={{children: item.label, side: "right", className: "bg-primary text-primary-foreground"}}
                         aria-label={item.label}
                     >
-                        <a>
+                        <Link href={item.href!}>
                             <item.icon className="h-5 w-5" />
                             <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
-                        </a>
+                        </Link>
                     </SidebarMenuButton>
-                  </Link>
                 </SidebarMenuItem>
                 ))}
             </SidebarMenu>
