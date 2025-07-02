@@ -49,10 +49,10 @@ export default function SecurityPage() {
         </CardTitle>
         <CardDescription>Equipo de Security, Análisis y Tablero de Control.</CardDescription>
       </CardHeader>
-      <CardContent className="p-4 pt-0 md:p-6 md:pt-0 space-y-8">
-        
-        {/* Leader Section */}
-        <div className="pt-4">
+      <CardContent className="p-4 pt-0 md:p-6 md:pt-0">
+        <div className="space-y-8 pt-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            {/* Leader Section */}
             <div className="flex items-center space-x-4">
               <Link href={leader.chatUrl} target="_blank" rel="noopener noreferrer" className="shrink-0">
                 <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
@@ -65,53 +65,55 @@ export default function SecurityPage() {
                 <p className="text-md text-muted-foreground">{leader.role}</p>
               </div>
             </div>
-        </div>
 
-        {/* Analysts Section */}
-        <div>
-            <h3 className="text-lg font-semibold flex items-center mb-4">
-                <Users className="mr-2 h-5 w-5 text-primary" />
-                Analistas
+            {/* Analysts Card */}
+            <Card className="shadow-lg h-full">
+                <CardHeader className="p-3">
+                    <CardTitle className="text-sm font-headline flex items-center">
+                    <Users className="mr-2 h-4 w-4 text-primary" />
+                    Analistas de Security
+                    </CardTitle>
+                </CardHeader>
+                <CardContent className="p-3 pt-0">
+                    <ul className="space-y-2">
+                    {analysts.map((member) => (
+                        <li key={member.usuario} className="flex items-center space-x-2">
+                        <Link href={member.chatUrl} target="_blank" rel="noopener noreferrer">
+                            <Avatar className="h-8 w-8 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                            <AvatarImage src={member.photoUrl || (member.email ? `https://avatar.vercel.sh/${member.email}.png?s=100` : undefined)} alt={member.usuario} />
+                            <AvatarFallback>{getInitials(member.usuario)}</AvatarFallback>
+                            </Avatar>
+                        </Link>
+                        <div>
+                            <p className="font-semibold text-xs">{member.usuario}</p>
+                        </div>
+                        </li>
+                    ))}
+                    </ul>
+                </CardContent>
+            </Card>
+          </div>
+          
+          {/* Dashboard Section */}
+          <div>
+            <h3 className="text-lg font-semibold flex items-center mb-2">
+              <BarChart3 className="mr-2 h-5 w-5 text-primary" />
+              Tablero de Security
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {analysts.map((member) => (
-                    <Card key={member.usuario} className="shadow-md hover:shadow-lg transition-shadow">
-                        <CardContent className="p-4 flex items-center space-x-4">
-                            <Link href={member.chatUrl} target="_blank" rel="noopener noreferrer">
-                                <Avatar className="h-16 w-16 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
-                                    <AvatarImage src={member.photoUrl || (member.email ? `https://avatar.vercel.sh/${member.email}.png?s=100` : undefined)} alt={member.usuario} />
-                                    <AvatarFallback>{getInitials(member.usuario)}</AvatarFallback>
-                                </Avatar>
-                            </Link>
-                            <div>
-                                <p className="font-bold text-base">{member.usuario}</p>
-                                <p className="text-sm text-muted-foreground">{member.role}</p>
-                            </div>
-                        </CardContent>
-                    </Card>
-                ))}
+            <p className="text-sm text-muted-foreground mb-4">
+              Visualización de datos clave del equipo de Security.
+            </p>
+            <div className="h-[600px] md:h-auto md:aspect-[16/9] w-full rounded-lg overflow-hidden border">
+                <iframe
+                    title="Tablero de Security"
+                    width="100%"
+                    height="100%"
+                    src={lookerStudioEmbedUrl}
+                    allowFullScreen
+                    sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-popups-to-escape-sandbox"
+                    className="border-0"
+                ></iframe>
             </div>
-        </div>
-        
-        {/* Dashboard Section */}
-        <div>
-          <h3 className="text-lg font-semibold flex items-center mb-2">
-            <BarChart3 className="mr-2 h-5 w-5 text-primary" />
-            Tablero de Security
-          </h3>
-           <p className="text-sm text-muted-foreground mb-4">
-            Visualización de datos clave del equipo de Security.
-          </p>
-          <div className="h-[600px] md:h-auto md:aspect-[16/9] w-full rounded-lg overflow-hidden border">
-              <iframe
-                  title="Tablero de Security"
-                  width="100%"
-                  height="100%"
-                  src={lookerStudioEmbedUrl}
-                  allowFullScreen
-                  sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-popups-to-escape-sandbox"
-                  className="border-0"
-              ></iframe>
           </div>
         </div>
       </CardContent>
