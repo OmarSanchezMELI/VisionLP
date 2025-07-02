@@ -18,7 +18,6 @@ interface Contact {
 // Consolidated list of all contacts from the application
 const allContacts: Contact[] = [
   // Leaders
-  { usuario: 'Alejandra Lucero', role: 'Líder de CCM', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Alejandra%20Lucero.jpeg', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/_DHukCAAAAE' },
   { usuario: 'Didier Tolentino', role: 'Coordinador de CP', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/unnamed.webp', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/00i2ncAAAAE' },
   { usuario: 'Omar García', email: 'omar.garciavaldez@mercadolibre.com.mx', role: 'Supervisor de Investigaciones', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Omar%20Garcia.jpeg', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/uaqWncAAAAE' },
   
@@ -34,17 +33,6 @@ const allContacts: Contact[] = [
   // Investigations Team
   { usuario: 'Omar Sánchez', email: 'omar.sanchezfigueroa@mercadolibre.com.mx', role: 'Analista Sr BI', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Omar%20Sanchez.jpeg', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/uaqWncAAAAE' },
   { usuario: 'Daniel Mejía', email: 'daniel.mejiaibarra@mercadolibre.com.mx', role: 'Analista Jr. de Investigaciones', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Daniel%20Mejia.webp', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/5wnHL8AAAAE' },
-
-  // CCM Team
-  { usuario: 'Michelle Toscano', email: 'michelle.toscano@mercadolibre.com.mx', role: 'Analista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jCzykCAAAAE' },
-  { usuario: 'Yang Madgiel Castro Zanabria', email: 'yang.castro@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/obfekCAAAAE' },
-  { usuario: 'Maria Guadalupe Chavez Morales', email: 'mariaguadalupe.chavez@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/4dAukCAAAAE' },
-  { usuario: 'Jorge Alberto Chable Ramirez', email: 'jorge.chable@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/7OvukCAAAAE' },
-  { usuario: 'Samantha Echeverria Roque', email: 'samantha.echeverria@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/pFCukCAAAAE' },
-  { usuario: 'Juan Revilla Torres', email: 'juan.revilla@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jYkOkCAAAAE' },
-  { usuario: 'Erick Ulloa', email: 'erick.ulloa@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/0kVukCAAAAE' },
-  { usuario: 'Roberto Carlos Rodriguez Vega', email: 'robertocarlos.rodriguez@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/7LrukCAAAAE' },
-  { usuario: 'Ricardo Javier Solorio Martinez', email: 'ricardo.solorio@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/6l2-kCAAAAE' },
 
   // REPs Team
   { usuario: 'Andrés Navarrete', email: 'andres.navarreteleon@mercadolibre.com.mx', role: 'REP', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/-fzFYCAAAAE' },
