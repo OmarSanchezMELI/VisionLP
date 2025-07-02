@@ -24,8 +24,7 @@ const allContacts: Contact[] = [
   { usuario: 'Néstor Becerril', email: 'nestor.becerril@mercadolibre.com.mx', role: 'Coordinador de Security', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Nestor%20Becerril.jpeg', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/yd_Fb8AAAAE' },
   
   // Managers
-  { usuario: 'Basilio de Jesus Morales', email: 'basilio.morales@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/52DOkCAAAAE' },
-  { usuario: 'Isidro Contreras', email: 'isidro.contreras@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jLW2ncAAAAE' },
+  { usuario: 'Isidro Contreras', email: 'isidro.contreras@mercadolibre.com.mx', role: 'LP Site Manager', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jLW2ncAAAAE' },
 
   // Investigations Team
   { usuario: 'Omar Sánchez', email: 'omar.sanchezfigueroa@mercadolibre.com.mx', role: 'Analista Sr BI', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Omar%20Sanchez.jpeg', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/uaqWncAAAAE' },

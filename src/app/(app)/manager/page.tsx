@@ -12,10 +12,7 @@ interface Manager {
 }
 
 const managersData: Manager[] = [
-    { usuario: 'Omar García Valdez', email: 'omar.garciavaldez@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/uaqWncAAAAE' },
-    { usuario: 'Daniel Mejía', email: 'daniel.mejiaibarra@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/5wnHL8AAAAE' },
-    { usuario: 'Isidro Contreras', email: 'isidro.contreras@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jLW2ncAAAAE' },
-    { usuario: 'Basilio de Jesus Morales', email: 'basilio.morales@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/52DOkCAAAAE' },
+    { usuario: 'Isidro Contreras', email: 'isidro.contreras@mercadolibre.com.mx', role: 'LP Site Manager', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jLW2ncAAAAE' },
 ];
 
 const getInitials = (name: string) => {
@@ -34,7 +31,7 @@ export default function ManagerPage() {
           <Briefcase className="mr-2 h-6 w-6 text-primary" />
           Manager
         </CardTitle>
-        <CardDescription>Contacto directo con el equipo de gerencia.</CardDescription>
+        <CardDescription>Contacto directo con el LP Site Manager.</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
