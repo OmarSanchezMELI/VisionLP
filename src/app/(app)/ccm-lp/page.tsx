@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useCallback } from 'react';
@@ -17,25 +18,25 @@ const getInitials = (name: string) => {
 };
 
 const ccmLeader = {
-  usuario: 'Alexis Tolentino',
-  email: 'alexis.tolentinorivera@mercadolibre.com.mx',
+  usuario: 'Alejandra Lucero',
+  email: 'alejandra.lucero@mercadolibre.com.mx',
   role: 'Líder de CCM',
   chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/G-pCYCAAAAE',
-  photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/main/Alexis%20Tolentino.jpeg'
 };
 
 const ccmAnalysts = [
-  { usuario: 'Diego Armando Rosas', email: 'diego.rosas@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/elDPYCAAAAE' },
-  { usuario: 'Luis Fernando Mancilla', email: 'luis.mancilla@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/UfTPYCAAAAE' },
-  { usuario: 'Isaac Hernandez', email: 'isaac.hernandez@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/xALQYCAAAAE' },
-  { usuario: 'Eduardo Flores', email: 'eduardo.flores@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/PgnQYCAAAAE' },
+  { usuario: 'Michelle Toscano', email: 'michelle.toscano@mercadolibre.com.mx', horario: '09:00-18:00', diasNoDisponibles: ['sabado', 'domingo'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/elDPYCAAAAE' },
 ];
 
 const ccmMonitors = [
-    { usuario: 'Miguel Angel', email: 'miguel.angel@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/W1jUYCAAAAE' },
-    { usuario: 'Fernanda Cruz', email: 'fernanda.cruz@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/G8bRYCAAAAE' },
-    { usuario: 'David Rios', email: 'david.rios@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/5f3QYCAAAAE' },
-    { usuario: 'Laura Ponce', email: 'laura.ponce@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/nwvQYCAAAAE' },
+    { usuario: 'YANG MADGIEL CASTRO ZANABRIA', email: 'yang.castro@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/W1jUYCAAAAE' },
+    { usuario: 'MARIA GUADALUPE CHAVEZ MORALES', email: 'maria.chavez@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/G8bRYCAAAAE' },
+    { usuario: 'JORGE ALBERTO CHABLE RAMIREZ', email: 'jorge.chable@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/5f3QYCAAAAE' },
+    { usuario: 'SAMANTHA ECHEVERRIA ROQUE', email: 'samantha.echeverria@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/nwvQYCAAAAE' },
+    { usuario: 'JUAN REVILLA TORRES', email: 'juan.revilla@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/xALQYCAAAAE' },
+    { usuario: 'ERICK ULLOA', email: 'erick.ulloa@mercadolibre.com.mx', horario: '12:40-21:40', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/PgnQYCAAAAE' },
+    { usuario: 'ROBERTO CARLOS RODRIGUEZ VEGA', email: 'roberto.rodriguez@mercadolibre.com.mx', horario: '21:40-06:00', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/UfTPYCAAAAE' },
+    { usuario: 'RICARDO JAVIER SOLORIO MARTINEZ', email: 'ricardo.solorio@mercadolibre.com.mx', horario: '21:40-06:00', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/isaac-hernandez-chat-url' },
 ];
 
 const lookerStudioEmbedUrl = "https://lookerstudio.google.com/embed/reporting/8364d081-338c-4853-9372-f155913e659b/page/p_h1r6z5g1qd";
@@ -52,7 +53,15 @@ function TeamOnDuty({ title, teamData, icon }: { title: string, teamData: typeof
 
     const available = teamData.filter(member => {
       if (member.diasNoDisponibles.includes(dayOfWeek)) return false;
+      
       const [startTime, endTime] = member.horario.split('-');
+      
+      // Handle overnight shifts
+      if (startTime > endTime) {
+        return currentTime >= startTime || currentTime <= endTime;
+      }
+      
+      // Handle day shifts
       return currentTime >= startTime && currentTime <= endTime;
     });
     setOnDuty(available);
@@ -108,7 +117,7 @@ export default function CcmLpPage() {
       <CardHeader className="p-4 md:p-6">
         <CardTitle className="text-xl md:text-2xl font-headline flex items-center">
           <Video className="mr-2 h-6 w-6 text-primary" />
-          Centro de Control y Monitoreo (CCM)
+          CCM
         </CardTitle>
         <CardDescription>Herramientas y personal del equipo de CCM.</CardDescription>
       </CardHeader>
@@ -128,7 +137,7 @@ export default function CcmLpPage() {
                     <CardContent className="p-3 pt-0 flex flex-col items-center text-center">
                          <Link href={ccmLeader.chatUrl} target="_blank" rel="noopener noreferrer" className="shrink-0">
                             <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity mb-2">
-                                <AvatarImage src={ccmLeader.photoUrl} alt={`Foto de ${ccmLeader.usuario}`} />
+                                <AvatarImage src={ccmLeader.email ? `https://avatar.vercel.sh/${ccmLeader.email}.png?s=100` : undefined} alt={`Foto de ${ccmLeader.usuario}`} />
                                 <AvatarFallback>{getInitials(ccmLeader.usuario)}</AvatarFallback>
                             </Avatar>
                          </Link>
