@@ -20,6 +20,7 @@ const allContacts: Contact[] = [
   // Leaders
   { usuario: 'Didier Tolentino', role: 'Coordinador de CP', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/unnamed.webp', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/00i2ncAAAAE' },
   { usuario: 'Omar García', email: 'omar.garciavaldez@mercadolibre.com.mx', role: 'Supervisor de Investigaciones', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Omar%20Garcia.jpeg', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/uaqWncAAAAE' },
+  { usuario: 'Alexis Tolentino', email: 'alexis.tolentinorivera@mercadolibre.com.mx', role: 'Líder de CCM', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/main/Alexis%20Tolentino.jpeg', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/G-pCYCAAAAE' },
   
   // Managers
   { usuario: 'Alberto Alviter', email: 'alberto.alviter@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/9FrMb8AAAAE' },
@@ -40,6 +41,16 @@ const allContacts: Contact[] = [
   { usuario: 'Jorge Sotero', email: 'jorge.sotero@mercadolibre.com.mx', role: 'REP', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/zMHVYCAAAAE' },
   { usuario: 'Esperanza Sánchez', email: 'esperanza.sanchez@mercadolibre.com.mx', role: 'REP', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/mgK5YCAAAAE' },
   { usuario: 'Salvador Bautista', email: 'salvador.bautista@mercadolibre.com.mx', role: 'REP', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/ug2NYCAAAAE' },
+  
+  // CCM Team
+  { usuario: 'Diego Armando Rosas', email: 'diego.rosas@mercadolibre.com.mx', role: 'Analista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/elDPYCAAAAE' },
+  { usuario: 'Luis Fernando Mancilla', email: 'luis.mancilla@mercadolibre.com.mx', role: 'Analista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/UfTPYCAAAAE' },
+  { usuario: 'Isaac Hernandez', email: 'isaac.hernandez@mercadolibre.com.mx', role: 'Analista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/xALQYCAAAAE' },
+  { usuario: 'Eduardo Flores', email: 'eduardo.flores@mercadolibre.com.mx', role: 'Analista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/PgnQYCAAAAE' },
+  { usuario: 'Miguel Angel', email: 'miguel.angel@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/W1jUYCAAAAE' },
+  { usuario: 'Fernanda Cruz', email: 'fernanda.cruz@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/G8bRYCAAAAE' },
+  { usuario: 'David Rios', email: 'david.rios@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/5f3QYCAAAAE' },
+  { usuario: 'Laura Ponce', email: 'laura.ponce@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/nwvQYCAAAAE' },
 ].sort((a, b) => a.usuario.localeCompare(b.usuario));
 
 
