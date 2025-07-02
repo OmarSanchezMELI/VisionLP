@@ -1,5 +1,7 @@
+
 "use client";
 
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Lock, Users, BarChart3 } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -21,12 +23,12 @@ const leader: TeamMember = {
   email: 'nestor.becerril@mercadolibre.com.mx'
 };
 
-const analysts: TeamMember[] = [
-  { usuario: 'Valeria Sánchez', email: 'valeria.sanchez@mercadolibre.com.mx', role: 'Analista de Security', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jY7ekCAAAAE' },
-  { usuario: 'Samantha Aldape', email: 'samantha.aldape@mercadolibre.com.mx', role: 'Analista de Security', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/tNS-kCAAAAE' },
-  { usuario: 'Alberto Alviter', email: 'alberto.alviter@mercadolibre.com.mx', role: 'Analista de Security', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/9FrMb8AAAAE' },
-  { usuario: 'Francisco Tribouillier', email: 'francisco.tribouillier@mercadolibre.com.mx', role: 'Analista de Security', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/gp8ekCAAAAE' },
-  { usuario: 'José Luis del Castillo', email: 'jose.delcastillo@mercadolibre.com.mx', role: 'Analista de Security', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jose-luis-chat-url' },
+const analystsData = [
+  { usuario: 'Valeria Sánchez', email: 'valeria.sanchez@mercadolibre.com.mx', horario: '06:00-15:30', diasNoDisponibles: ['domingo', 'lunes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jY7ekCAAAAE' },
+  { usuario: 'Francisco Tribouillier', email: 'francisco.tribouillier@mercadolibre.com.mx', horario: '12:00-21:30', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/gp8ekCAAAAE' },
+  { usuario: 'Alberto Alviter', email: 'alberto.alviter@mercadolibre.com.mx', horario: '20:30-06:00', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/9FrMb8AAAAE' },
+  { usuario: 'Samantha Aldape', email: 'samantha.aldape@mercadolibre.com.mx', horario: '20:30-06:30', diasNoDisponibles: ['domingo', 'lunes', 'martes'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/tNS-kCAAAAE' },
+  { usuario: 'Luis Daniel Del Castillo', email: 'jose.delcastillo@mercadolibre.com.mx', horario: '08:00-17:30', diasNoDisponibles: ['sabado', 'domingo'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jose-luis-chat-url' },
 ];
 
 const lookerStudioEmbedUrl = "https://lookerstudio.google.com/embed/reporting/65ae4cef-0686-43c3-9263-fc9dcbb77a70/page/JHdOF";
@@ -38,6 +40,72 @@ const getInitials = (name: string) => {
   }
   return name.substring(0, 2).toUpperCase();
 };
+
+function AnalystsOnDuty() {
+  const [onDuty, setOnDuty] = useState<(typeof analystsData)>([]);
+
+  const checkSchedules = useCallback(() => {
+    const now = new Date();
+    const dayOfWeek = new Intl.DateTimeFormat('es-MX', { weekday: 'long', timeZone: 'America/Mexico_City' }).format(now).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const currentTime = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Mexico_City', hour12: false }).format(now);
+
+    const available = analystsData.filter(member => {
+      if (member.diasNoDisponibles.includes(dayOfWeek)) return false;
+      
+      const [startTime, endTime] = member.horario.split('-');
+      
+      // Handle overnight shifts
+      if (startTime > endTime) {
+        return currentTime >= startTime || currentTime <= endTime;
+      }
+      
+      // Handle day shifts
+      return currentTime >= startTime && currentTime <= endTime;
+    });
+    setOnDuty(available);
+  }, []);
+
+  useEffect(() => {
+    checkSchedules();
+    const intervalId = setInterval(checkSchedules, 1200000); // Update every 20 minutes
+    return () => clearInterval(intervalId);
+  }, [checkSchedules]);
+
+  return (
+    <Card className="shadow-lg h-full">
+      <CardHeader className="p-3">
+        <CardTitle className="text-sm font-headline flex items-center">
+          <Users className="mr-2 h-4 w-4 text-primary" />
+          Analistas de Security en Turno
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-3 pt-0">
+        {onDuty.length > 0 ? (
+          <ul className="space-y-2">
+            {onDuty.map((member) => (
+              <li key={member.usuario} className="flex items-center space-x-2">
+                <Link href={member.chatUrl} target="_blank" rel="noopener noreferrer">
+                  <Avatar className="h-8 w-8 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                    <AvatarImage src={member.email ? `https://avatar.vercel.sh/${member.email}.png?s=100` : undefined} alt={member.usuario} />
+                    <AvatarFallback>{getInitials(member.usuario)}</AvatarFallback>
+                  </Avatar>
+                </Link>
+                <div>
+                  <p className="font-semibold text-xs">{member.usuario}</p>
+                   <p className="text-xs text-muted-foreground">{member.horario}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-muted-foreground text-center py-2 text-sm">
+            No hay analistas disponibles.
+          </p>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
 
 export default function SecurityPage() {
   return (
@@ -67,31 +135,7 @@ export default function SecurityPage() {
             </div>
 
             {/* Analysts Card */}
-            <Card className="shadow-lg h-full">
-                <CardHeader className="p-3">
-                    <CardTitle className="text-sm font-headline flex items-center">
-                    <Users className="mr-2 h-4 w-4 text-primary" />
-                    Analistas de Security
-                    </CardTitle>
-                </CardHeader>
-                <CardContent className="p-3 pt-0">
-                    <ul className="space-y-2">
-                    {analysts.map((member) => (
-                        <li key={member.usuario} className="flex items-center space-x-2">
-                        <Link href={member.chatUrl} target="_blank" rel="noopener noreferrer">
-                            <Avatar className="h-8 w-8 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
-                            <AvatarImage src={member.photoUrl || (member.email ? `https://avatar.vercel.sh/${member.email}.png?s=100` : undefined)} alt={member.usuario} />
-                            <AvatarFallback>{getInitials(member.usuario)}</AvatarFallback>
-                            </Avatar>
-                        </Link>
-                        <div>
-                            <p className="font-semibold text-xs">{member.usuario}</p>
-                        </div>
-                        </li>
-                    ))}
-                    </ul>
-                </CardContent>
-            </Card>
+            <AnalystsOnDuty />
           </div>
           
           {/* Dashboard Section */}
