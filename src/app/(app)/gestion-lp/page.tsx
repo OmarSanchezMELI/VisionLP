@@ -20,7 +20,7 @@ const allContacts: Contact[] = [
   // Leaders
   { usuario: 'Didier Tolentino', role: 'Coordinador de CP', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/unnamed.webp', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/00i2ncAAAAE' },
   { usuario: 'Omar García', email: 'omar.garciavaldez@mercadolibre.com.mx', role: 'Supervisor de Investigaciones', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Omar%20Garcia.jpeg', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/uaqWncAAAAE' },
-  { usuario: 'Alejandra Lucero', email: 'alejandra.lucero@mercadolibre.com.mx', role: 'Líder de CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/G-pCYCAAAAE' },
+  { usuario: 'Alejandra Lucero', email: 'alejandra.lucero@mercadolibre.com.mx', role: 'Líder de CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/G-pCYCAAAAE', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Alejandra%20Lucero.jpeg' },
   
   // Managers
   { usuario: 'Alberto Alviter', email: 'alberto.alviter@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/9FrMb8AAAAE' },

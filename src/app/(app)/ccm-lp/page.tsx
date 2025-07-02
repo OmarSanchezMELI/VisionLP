@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Video, Users, UserCheck, User, ShieldCheck } from 'lucide-react';
+import { Video, Users, UserCheck, ShieldCheck } from 'lucide-react';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import Link from 'next/link';
 
@@ -22,6 +22,7 @@ const ccmLeader = {
   email: 'alejandra.lucero@mercadolibre.com.mx',
   role: 'Líder de CCM',
   chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/G-pCYCAAAAE',
+  photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Alejandra%20Lucero.jpeg'
 };
 
 const ccmAnalysts = [
@@ -125,26 +126,18 @@ export default function CcmLpPage() {
         <div className="space-y-8 pt-4">
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-            {/* Leader Card */}
-            <div className="md:col-span-1">
-                <Card className="shadow-lg h-full">
-                    <CardHeader className="p-3">
-                        <CardTitle className="text-sm font-headline flex items-center">
-                            <User className="mr-2 h-4 w-4 text-primary" />
-                            Líder de Equipo
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-3 pt-0 flex flex-col items-center text-center">
-                         <Link href={ccmLeader.chatUrl} target="_blank" rel="noopener noreferrer" className="shrink-0">
-                            <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity mb-2">
-                                <AvatarImage src={ccmLeader.email ? `https://avatar.vercel.sh/${ccmLeader.email}.png?s=100` : undefined} alt={`Foto de ${ccmLeader.usuario}`} />
-                                <AvatarFallback>{getInitials(ccmLeader.usuario)}</AvatarFallback>
-                            </Avatar>
-                         </Link>
-                        <h3 className="text-lg font-bold">{ccmLeader.usuario}</h3>
-                        <p className="text-md text-muted-foreground">{ccmLeader.role}</p>
-                    </CardContent>
-                </Card>
+            {/* Leader Info */}
+            <div className="md:col-span-1 flex items-center space-x-4">
+                <Link href={ccmLeader.chatUrl} target="_blank" rel="noopener noreferrer" className="shrink-0">
+                    <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                        <AvatarImage src={ccmLeader.photoUrl} alt={`Foto de ${ccmLeader.usuario}`} />
+                        <AvatarFallback>{getInitials(ccmLeader.usuario)}</AvatarFallback>
+                    </Avatar>
+                </Link>
+                <div>
+                    <h3 className="text-xl font-bold">{ccmLeader.usuario}</h3>
+                    <p className="text-md text-muted-foreground">{ccmLeader.role}</p>
+                </div>
             </div>
 
             {/* On-Duty Cards */}
