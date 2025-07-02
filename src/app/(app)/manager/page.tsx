@@ -15,12 +15,7 @@ const managersData: Manager[] = [
     { usuario: 'Omar García Valdez', email: 'omar.garciavaldez@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/uaqWncAAAAE' },
     { usuario: 'Daniel Mejía', email: 'daniel.mejiaibarra@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/5wnHL8AAAAE' },
     { usuario: 'Isidro Contreras', email: 'isidro.contreras@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jLW2ncAAAAE' },
-    { usuario: 'Nestor Becerril', email: 'nestor.becerril@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/yd_Fb8AAAAE' },
-    { usuario: 'Valeria Sanchez', email: 'valeria.sanchez@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jY7ekCAAAAE' },
-    { usuario: 'Samantha Aldape', email: 'samantha.aldape@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/tNS-kCAAAAE' },
-    { usuario: 'Alberto Alviter', email: 'alberto.alviter@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/9FrMb8AAAAE' },
     { usuario: 'Basilio de Jesus Morales', email: 'basilio.morales@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/52DOkCAAAAE' },
-    { usuario: 'Francisco Rene Tribouillier', email: 'francisco.tribouillier@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/gp8ekCAAAAE' },
 ];
 
 const getInitials = (name: string) => {

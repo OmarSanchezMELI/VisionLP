@@ -21,15 +21,11 @@ const allContacts: Contact[] = [
   { usuario: 'Didier Tolentino', role: 'Coordinador de CP', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/unnamed.webp', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/00i2ncAAAAE' },
   { usuario: 'Omar García', email: 'omar.garciavaldez@mercadolibre.com.mx', role: 'Supervisor de Investigaciones', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Omar%20Garcia.jpeg', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/uaqWncAAAAE' },
   { usuario: 'Alejandra Lucero', email: 'alejandra.lucero@mercadolibre.com.mx', role: 'Líder de CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/G-pCYCAAAAE', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Alejandra%20Lucero.jpeg' },
+  { usuario: 'Néstor Becerril', email: 'nestor.becerril@mercadolibre.com.mx', role: 'Coordinador de Security', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Nestor%20Becerril.jpeg', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/yd_Fb8AAAAE' },
   
   // Managers
-  { usuario: 'Alberto Alviter', email: 'alberto.alviter@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/9FrMb8AAAAE' },
   { usuario: 'Basilio de Jesus Morales', email: 'basilio.morales@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/52DOkCAAAAE' },
-  { usuario: 'Francisco Rene Tribouillier', email: 'francisco.tribouillier@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/gp8ekCAAAAE' },
   { usuario: 'Isidro Contreras', email: 'isidro.contreras@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jLW2ncAAAAE' },
-  { usuario: 'Nestor Becerril', email: 'nestor.becerril@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/yd_Fb8AAAAE' },
-  { usuario: 'Samantha Aldape', email: 'samantha.aldape@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/tNS-kCAAAAE' },
-  { usuario: 'Valeria Sanchez', email: 'valeria.sanchez@mercadolibre.com.mx', role: 'Gerente', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jY7ekCAAAAE' },
 
   // Investigations Team
   { usuario: 'Omar Sánchez', email: 'omar.sanchezfigueroa@mercadolibre.com.mx', role: 'Analista Sr BI', photoUrl: 'https://raw.githubusercontent.com/OmarSanchezMELI/ROBMeLi/refs/heads/main/Omar%20Sanchez.jpeg', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/uaqWncAAAAE' },
@@ -52,6 +48,14 @@ const allContacts: Contact[] = [
   { usuario: 'Erick Ulloa', email: 'erick.ulloa@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/PgnQYCAAAAE' },
   { usuario: 'Roberto Carlos Rodriguez Vega', email: 'roberto.rodriguez@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/UfTPYCAAAAE' },
   { usuario: 'Ricardo Javier Solorio Martinez', email: 'ricardo.solorio@mercadolibre.com.mx', role: 'Monitorista CCM', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/isaac-hernandez-chat-url' },
+  
+  // Security Team
+  { usuario: 'Valeria Sanchez', email: 'valeria.sanchez@mercadolibre.com.mx', role: 'Analista de Security', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jY7ekCAAAAE' },
+  { usuario: 'Samantha Aldape', email: 'samantha.aldape@mercadolibre.com.mx', role: 'Analista de Security', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/tNS-kCAAAAE' },
+  { usuario: 'Alberto Alviter', email: 'alberto.alviter@mercadolibre.com.mx', role: 'Analista de Security', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/9FrMb8AAAAE' },
+  { usuario: 'Francisco Rene Tribouillier', email: 'francisco.tribouillier@mercadolibre.com.mx', role: 'Analista de Security', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/gp8ekCAAAAE' },
+  { usuario: 'José Luis del Castillo', email: 'jose.delcastillo@mercadolibre.com.mx', role: 'Analista de Security', chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/jose-luis-chat-url' },
+
 ].sort((a, b) => a.usuario.localeCompare(b.usuario));
 
 
