@@ -28,7 +28,7 @@ import {
   SidebarInset,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, Cctv, FileSearch, ClipboardList, Siren } from 'lucide-react';
+import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, FileSearch, ClipboardList, Siren } from 'lucide-react';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
 import { getISOWeek } from 'date-fns';
@@ -153,7 +153,6 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     { href: '/home', label: 'Home', icon: Home },
     { href: '/control-de-perdidas', label: 'Control de Pérdidas', icon: ShieldAlert },
     { href: '/security', label: 'Security', icon: Lock },
-    { href: '/ccm', label: 'CCM', icon: Cctv },
     { href: '/investigaciones', label: 'Investigaciones', icon: FileSearch },
     { href: '/manager', label: 'Manager', icon: Briefcase },
     { href: '/bot', label: 'BOT', icon: BotIcon },
