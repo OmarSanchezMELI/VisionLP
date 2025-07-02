@@ -32,7 +32,6 @@ import {
 import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, FileSearch, ClipboardList, Siren, Video } from 'lucide-react';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
-import { getISOWeek } from 'date-fns';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -44,6 +43,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { WeatherDisplay } from '@/components/WeatherDisplay';
 
 
 function WarRoomButton() {
@@ -82,12 +82,6 @@ function WarRoomButton() {
 
 function AppHeader() {
   const { user, logout } = useAuth();
-  const [week, setWeek] = useState('');
-
-  useEffect(() => {
-    // To avoid hydration mismatch, we calculate the week number on the client.
-    setWeek(`W${getISOWeek(new Date())}`);
-  }, []);
 
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
@@ -96,13 +90,7 @@ function AppHeader() {
       </div>
       <div className="flex items-center justify-end gap-4">
         <WarRoomButton />
-        {week ? (
-          <div className="text-sm font-medium text-muted-foreground">
-            Estamos en {week}
-          </div>
-        ) : (
-          <Skeleton className="h-5 w-24" />
-        )}
+        <WeatherDisplay />
         {user ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
