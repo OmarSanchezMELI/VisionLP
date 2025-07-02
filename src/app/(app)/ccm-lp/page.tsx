@@ -39,7 +39,7 @@ const ccmMonitors = [
     { usuario: 'Ricardo Javier Solorio Martinez', email: 'ricardo.solorio@mercadolibre.com.mx', horario: '21:40-06:00', diasNoDisponibles: ['viernes', 'sabado'], chatUrl: 'https://mail.google.com/chat/u/0/#chat/dm/isaac-hernandez-chat-url' },
 ];
 
-const lookerStudioEmbedUrl = "https://lookerstudio.google.com/embed/reporting/8364d081-338c-4853-9372-f155913e659b/page/p_h1r6z5g1qd";
+const lookerStudioEmbedUrl = "https://lookerstudio.google.com/embed/reporting/3fe8c1d0-7995-45c8-91b2-0fe6e2e1be76/page/jnuVE";
 
 // --- Dynamic Team Components ---
 
