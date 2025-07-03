@@ -116,7 +116,7 @@ function TeamOnDuty({ title, teamData, icon }: { title: string, teamData: TeamMe
                   </Avatar>
                 </Link>
                 <div>
-                  <p className="font-semibold text-sm whitespace-nowrap">{member.usuario}</p>
+                  <p className="font-semibold text-sm truncate">{member.usuario}</p>
                   <p className="text-xs text-muted-foreground">{member.horario}</p>
                 </div>
               </li>
@@ -169,23 +169,23 @@ export default function HomePage() {
           >
             {teamCards.map((cardInfo) => (
               <div key={cardInfo.key} className="w-full flex-shrink-0 px-1">
-                  <Card className="shadow-lg flex flex-row overflow-hidden h-[300px] w-full max-w-2xl mx-auto">
-                      <div className="flex flex-col items-center justify-center gap-2 p-4 bg-muted/50 border-r w-[210px] shrink-0">
+                  <Card className="shadow-lg flex flex-col md:flex-row overflow-hidden h-auto md:h-[300px] w-full max-w-2xl mx-auto">
+                      <div className="flex flex-row md:flex-col items-center justify-center gap-2 p-3 bg-muted/50 border-b md:border-b-0 md:border-r w-full md:w-[220px] shrink-0">
                           <Link href={cardInfo.leader.chatUrl} target="_blank" rel="noopener noreferrer">
-                              <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                              <Avatar className="h-16 w-16 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                                   <AvatarImage src={cardInfo.leader.photoUrl} alt={cardInfo.leader.name} />
                                   <AvatarFallback>{getInitials(cardInfo.leader.name)}</AvatarFallback>
                               </Avatar>
                           </Link>
                           <div className="text-center">
-                              <p className="font-bold text-base whitespace-nowrap">{cardInfo.leader.name}</p>
+                              <p className="font-bold text-base truncate">{cardInfo.leader.name}</p>
                               <p className="flex items-center justify-center text-muted-foreground text-xs mt-1">
                                   <cardInfo.leader.icon className="mr-1 h-3 w-3 text-lp-blue" />
                                   {cardInfo.leader.role}
                               </p>
                           </div>
                       </div>
-                      <div className="flex-grow p-4 space-y-2">
+                      <div className="flex-grow p-3 space-y-1">
                           {cardInfo.teams.map(team => (
                               <TeamOnDuty key={team.title} title={team.title} teamData={team.data} icon={team.icon} />
                           ))}
@@ -224,3 +224,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+    
