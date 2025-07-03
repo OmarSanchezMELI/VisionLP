@@ -126,39 +126,29 @@ function AppHeader() {
   );
 }
 
-export default function AppLayout({ children }: { children: ReactNode }) {
-  const { user, isLoading } = useAuth();
-  const router = useRouter();
-  const pathname = usePathname();
+function AppSidebar() {
+    const pathname = usePathname();
+    const { setOpenMobile, isMobile } = useSidebar();
+    const { logout } = useAuth();
 
-  useEffect(() => {
-    if (!isLoading && !user) {
-      router.replace('/login');
-    }
-  }, [user, isLoading, router]);
+    const handleLinkClick = () => {
+        if (isMobile) {
+            setOpenMobile(false);
+        }
+    };
 
-  const navItems = [
-    { href: '/inicio', label: 'Inicio', icon: Home },
-    { href: '/control-de-perdidas', label: 'Control de Pérdidas', icon: ShieldAlert },
-    { href: '/ccm-lp', label: 'CCM', icon: Video },
-    { href: '/security', label: 'Security', icon: Lock },
-    { href: '/investigaciones', label: 'Investigaciones', icon: FileSearch },
-    { href: '/manager', label: 'Manager', icon: Briefcase },
-    { href: '/bot', label: 'BOT', icon: BotIcon },
-    { href: '/gestion-lp', label: 'Gestión LP', icon: ClipboardList },
-  ];
+    const navItems = [
+        { href: '/inicio', label: 'Inicio', icon: Home },
+        { href: '/control-de-perdidas', label: 'Control de Pérdidas', icon: ShieldAlert },
+        { href: '/ccm-lp', label: 'CCM', icon: Video },
+        { href: '/security', label: 'Security', icon: Lock },
+        { href: '/investigaciones', label: 'Investigaciones', icon: FileSearch },
+        { href: '/manager', label: 'Manager', icon: Briefcase },
+        { href: '/bot', label: 'BOT', icon: BotIcon },
+        { href: '/gestion-lp', label: 'Gestión LP', icon: ClipboardList },
+    ];
 
-  if (isLoading || !user) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen p-4">
-         <LayoutDashboard className="h-16 w-16 animate-pulse text-primary" />
-         <p className="mt-4 text-lg text-muted-foreground">Cargando aplicación...</p>
-      </div>
-    );
-  }
-  
-  return (
-    <SidebarProvider defaultOpen={false}>
         <Sidebar variant="sidebar" collapsible="icon" side="left" className="border-r border-sidebar-border shadow-md z-40">
             <SidebarHeader className="p-4 items-center justify-center hidden group-data-[state=expanded]:flex">
                  <MercadoLibreLogo className="w-auto h-10" />
@@ -172,6 +162,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                         isActive={pathname.startsWith(item.href!)}
                         tooltip={{children: item.label, side: "right", className: "bg-primary text-primary-foreground"}}
                         aria-label={item.label}
+                        onClick={handleLinkClick}
                     >
                         <Link href={item.href!}>
                             <item.icon className="h-5 w-5" />
@@ -183,11 +174,36 @@ export default function AppLayout({ children }: { children: ReactNode }) {
             </SidebarMenu>
             </SidebarContent>
             <SidebarFooter className="p-2 hidden group-data-[state=expanded]:flex">
-                <Button variant="ghost" className="w-full justify-start" onClick={() => { useAuth().logout(); }}>
+                <Button variant="ghost" className="w-full justify-start" onClick={logout}>
                     <LogOut className="mr-2 h-4 w-4" /> Cerrar Sesión
                 </Button>
             </SidebarFooter>
         </Sidebar>
+    );
+}
+
+export default function AppLayout({ children }: { children: ReactNode }) {
+  const { user, isLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && !user) {
+      router.replace('/login');
+    }
+  }, [user, isLoading, router]);
+
+  if (isLoading || !user) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen p-4">
+         <LayoutDashboard className="h-16 w-16 animate-pulse text-primary" />
+         <p className="mt-4 text-lg text-muted-foreground">Cargando aplicación...</p>
+      </div>
+    );
+  }
+  
+  return (
+    <SidebarProvider defaultOpen={false}>
+        <AppSidebar />
         <SidebarInset className="flex flex-col flex-1">
             <AppHeader />
             <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 bg-background">
