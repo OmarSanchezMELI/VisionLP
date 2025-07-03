@@ -182,31 +182,59 @@ export default function InicioPage() {
     const plugin = useRef(
         Autoplay({ delay: 10000, stopOnMouseEnter: true })
     );
+    const lookerStudioUrl = "https://lookerstudio.google.com/embed/reporting/29ec7fbe-f97b-40cf-b8e3-ff9c026dceb8/page/seJOF";
 
-  return (
-    <Card className="shadow-lg">
-        <CardHeader>
-            <CardTitle className="text-xl md:text-2xl font-headline">Equipo en Turno</CardTitle>
-        </CardHeader>
-        <CardContent>
-            <div className="flex justify-center md:justify-start">
-                <Carousel
-                    plugins={[plugin.current]}
-                    opts={{ align: "start", loop: true }}
-                    className="w-full max-w-sm"
-                >
-                    <CarouselContent>
-                    {leaders.map((leader) => (
-                        <CarouselItem key={leader.id}>
-                        <div className="p-1">
-                            <TeamCard leader={leader} team={teams[leader.id as keyof typeof teams]} />
-                        </div>
-                        </CarouselItem>
-                    ))}
-                    </CarouselContent>
-                </Carousel>
-            </div>
-        </CardContent>
-    </Card>
-  );
+    return (
+        <div className="space-y-6">
+            <Card className="shadow-lg">
+                <CardHeader>
+                    <CardTitle className="text-xl md:text-2xl font-headline">Equipo en Turno</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="flex justify-center md:justify-start">
+                        <Carousel
+                            plugins={[plugin.current]}
+                            opts={{ align: "start", loop: true }}
+                            className="w-full max-w-sm"
+                        >
+                            <CarouselContent>
+                            {leaders.map((leader) => (
+                                <CarouselItem key={leader.id}>
+                                <div className="p-1">
+                                    <TeamCard leader={leader} team={teams[leader.id as keyof typeof teams]} />
+                                </div>
+                                </CarouselItem>
+                            ))}
+                            </CarouselContent>
+                        </Carousel>
+                    </div>
+                </CardContent>
+            </Card>
+
+            <Card className="shadow-lg">
+                <CardHeader>
+                    <CardTitle className="text-xl md:text-2xl font-headline flex items-center">
+                        <FileSearch className="mr-2 h-6 w-6 text-primary" />
+                        Tactic
+                    </CardTitle>
+                    <CardDescription>
+                        Visualización de datos clave del tablero Tactic.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div className="h-[600px] md:h-auto md:aspect-[16/9] w-full rounded-lg overflow-hidden border">
+                        <iframe
+                            title="Tactic"
+                            width="100%"
+                            height="100%"
+                            src={lookerStudioUrl}
+                            allowFullScreen
+                            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-popups-to-escape-sandbox"
+                            className="border-0"
+                        ></iframe>
+                    </div>
+                </CardContent>
+            </Card>
+        </div>
+    );
 }
