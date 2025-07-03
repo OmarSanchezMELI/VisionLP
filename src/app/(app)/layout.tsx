@@ -69,7 +69,7 @@ function WarRoomButton() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction onClick={handleConfirm}>
+          <AlertDialogAction onClick={handleConfirm} variant="destructive">
             Unirme ahora
           </AlertDialogAction>
         </AlertDialogFooter>
