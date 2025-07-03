@@ -187,7 +187,6 @@ export default function InicioPage() {
     <Card className="shadow-lg">
         <CardHeader>
             <CardTitle className="text-xl md:text-2xl font-headline">Equipo en Turno</CardTitle>
-            <CardDescription>Desliza para ver el personal disponible en cada área. Cambia automáticamente cada 10 segundos.</CardDescription>
         </CardHeader>
         <CardContent>
             <div className="flex justify-center md:justify-start">
