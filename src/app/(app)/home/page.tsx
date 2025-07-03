@@ -162,14 +162,14 @@ export default function HomePage() {
       {/* Top Row: Team Carousel */}
       <div>
         <h3 className="text-xl font-bold mb-4">Equipo en Turno</h3>
-        <div className="relative w-full overflow-hidden mx-auto">
+        <div className="relative w-full overflow-hidden">
           <div 
               className="flex transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {teamCards.map((cardInfo) => (
               <div key={cardInfo.key} className="w-full flex-shrink-0 px-1">
-                  <Card className="shadow-lg flex flex-row overflow-hidden h-[300px]">
+                  <Card className="shadow-lg flex flex-row overflow-hidden h-[300px] w-full max-w-2xl mx-auto">
                       <div className="flex flex-col items-center justify-center gap-2 p-4 bg-muted/50 border-r w-[210px] shrink-0">
                           <Link href={cardInfo.leader.chatUrl} target="_blank" rel="noopener noreferrer">
                               <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
