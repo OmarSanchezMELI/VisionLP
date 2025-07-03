@@ -101,9 +101,9 @@ function TeamOnDuty({ title, teamData, icon }: { title: string, teamData: TeamMe
 
   return (
     <div>
-        <h4 className="font-semibold text-sm mb-3 flex items-center text-muted-foreground">{icon}{title}</h4>
+        <h4 className="font-semibold text-sm mb-2 flex items-center text-muted-foreground">{icon}{title}</h4>
         {onDuty.length > 0 ? (
-          <ul className="space-y-3">
+          <ul className="space-y-2">
             {onDuty.map((member) => (
               <li key={member.usuario} className="flex items-center space-x-3">
                 <Link href={member.chatUrl} target="_blank" rel="noopener noreferrer">
@@ -165,7 +165,7 @@ export default function HomePage() {
         >
           {teamCards.map((cardInfo) => (
              <div key={cardInfo.key} className="w-full flex-shrink-0 px-1">
-                <Card className="shadow-lg flex flex-row overflow-hidden">
+                <Card className="shadow-lg flex flex-row overflow-hidden h-[300px]">
                     <div className="flex flex-col items-center justify-center gap-2 p-3 bg-muted/50 border-r w-[170px] shrink-0">
                         <Link href={cardInfo.leader.chatUrl} target="_blank" rel="noopener noreferrer">
                             <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
@@ -181,7 +181,7 @@ export default function HomePage() {
                             </p>
                         </div>
                     </div>
-                    <div className="flex-grow p-4 space-y-4 overflow-y-auto">
+                    <div className="flex-grow p-4 space-y-2">
                         {cardInfo.teams.map(team => (
                             <TeamOnDuty key={team.title} title={team.title} teamData={team.data} icon={team.icon} />
                         ))}
