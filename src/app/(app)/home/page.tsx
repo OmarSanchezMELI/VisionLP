@@ -151,7 +151,7 @@ export default function HomePage() {
   }, [teamCards.length]);
 
   return (
-    <Card className="shadow-lg w-full">
+    <Card className="shadow-lg w-full max-w-4xl mx-auto">
       <CardHeader>
         <CardTitle>Equipo en Turno</CardTitle>
       </CardHeader>
@@ -163,8 +163,8 @@ export default function HomePage() {
           >
             {teamCards.map((cardInfo) => (
               <div key={cardInfo.key} className="w-full flex-shrink-0 px-1">
-                  <Card className="shadow-lg flex flex-col md:flex-row overflow-hidden w-full border">
-                      <div className="flex items-center space-x-4 p-4 bg-muted/50 border-b md:border-b-0 md:border-r md:flex-col md:space-x-0 md:space-y-4 md:items-center md:justify-center md:w-[260px] shrink-0">
+                  <Card className="shadow-lg flex flex-col md:flex-row overflow-hidden w-full border h-[300px]">
+                      <div className="flex items-center space-x-4 p-4 bg-muted/50 border-b md:border-b-0 md:border-r md:flex-col md:space-x-0 md:space-y-4 md:items-center md:justify-center md:w-[320px] shrink-0">
                           <Link href={cardInfo.leader.chatUrl} target="_blank" rel="noopener noreferrer">
                               <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                                   <AvatarImage src={cardInfo.leader.photoUrl} alt={cardInfo.leader.name} />
@@ -179,7 +179,7 @@ export default function HomePage() {
                               </p>
                           </div>
                       </div>
-                      <div className="flex-grow p-4 space-y-2 overflow-y-auto h-[300px] md:h-auto">
+                      <div className="flex-grow p-4 space-y-2 overflow-y-auto">
                           {cardInfo.teams.map(team => (
                               <TeamOnDuty key={team.title} title={team.title} teamData={team.data} icon={team.icon} />
                           ))}
