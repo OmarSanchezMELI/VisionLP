@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useCallback, type ReactNode } from 'react';
@@ -6,8 +5,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Users, UserCheck, ShieldAlert, Video, Lock, FileSearch } from 'lucide-react';
 import Link from 'next/link';
-import { getWeek, subWeeks } from 'date-fns';
-import { Skeleton } from '@/components/ui/skeleton';
 
 
 // --- DATA ---
@@ -134,7 +131,6 @@ function TeamOnDuty({ title, teamData, icon }: { title: string, teamData: TeamMe
 
 export default function HomePage() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [weekNumber, setWeekNumber] = useState<number | null>(null);
 
   const teamCards = [
     { key: 'cp', leader: leaders.cp, teams: [{ title: "REPs en Turno", data: repsData, icon: <Users className="mr-2 h-4 w-4" /> }] },
@@ -147,10 +143,6 @@ export default function HomePage() {
   ];
 
   useEffect(() => {
-    const lastWeek = subWeeks(new Date(), 1);
-    // Use { weekStartsOn: 1 } for ISO week numbering (Monday as start of week)
-    setWeekNumber(getWeek(lastWeek, { weekStartsOn: 1 }));
-
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % teamCards.length);
     }, 5000); // Change card every 5 seconds
@@ -158,71 +150,41 @@ export default function HomePage() {
   }, [teamCards.length]);
 
   return (
-    <div className="space-y-8">
-      {/* Top Row: Team Carousel */}
-      <div>
-        <h3 className="text-xl font-bold mb-4">Equipo en Turno</h3>
-        <div className="relative w-full overflow-hidden">
-          <div 
-              className="flex transition-transform duration-700 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          >
-            {teamCards.map((cardInfo) => (
-              <div key={cardInfo.key} className="w-full flex-shrink-0 px-1">
-                  <Card className="shadow-lg flex flex-col md:flex-row overflow-hidden h-auto md:h-[300px] w-full max-w-2xl mx-auto">
-                      <div className="flex flex-row md:flex-col items-center justify-center gap-2 p-3 bg-muted/50 border-b md:border-b-0 md:border-r w-full md:w-[220px] shrink-0">
-                          <Link href={cardInfo.leader.chatUrl} target="_blank" rel="noopener noreferrer">
-                              <Avatar className="h-16 w-16 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
-                                  <AvatarImage src={cardInfo.leader.photoUrl} alt={cardInfo.leader.name} />
-                                  <AvatarFallback>{getInitials(cardInfo.leader.name)}</AvatarFallback>
-                              </Avatar>
-                          </Link>
-                          <div className="text-center">
-                              <p className="font-bold text-base truncate">{cardInfo.leader.name}</p>
-                              <p className="flex items-center justify-center text-muted-foreground text-xs mt-1">
-                                  <cardInfo.leader.icon className="mr-1 h-3 w-3 text-lp-blue" />
-                                  {cardInfo.leader.role}
-                              </p>
-                          </div>
-                      </div>
-                      <div className="flex-grow p-3 space-y-1">
-                          {cardInfo.teams.map(team => (
-                              <TeamOnDuty key={team.title} title={team.title} teamData={team.data} icon={team.icon} />
-                          ))}
-                      </div>
-                  </Card>
-              </div>
-            ))}
-          </div>
+    <div>
+      <h3 className="text-xl font-bold mb-4">Equipo en Turno</h3>
+      <div className="relative w-full max-w-2xl mx-auto overflow-hidden">
+        <div 
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {teamCards.map((cardInfo) => (
+            <div key={cardInfo.key} className="w-full flex-shrink-0 px-1">
+                <Card className="shadow-lg flex flex-col md:flex-row overflow-hidden h-auto md:h-[300px] w-full">
+                    <div className="flex flex-row md:flex-col items-center justify-center gap-2 p-3 bg-muted/50 border-b md:border-b-0 md:border-r w-full md:w-[220px] shrink-0">
+                        <Link href={cardInfo.leader.chatUrl} target="_blank" rel="noopener noreferrer">
+                            <Avatar className="h-16 w-16 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                                <AvatarImage src={cardInfo.leader.photoUrl} alt={cardInfo.leader.name} />
+                                <AvatarFallback>{getInitials(cardInfo.leader.name)}</AvatarFallback>
+                            </Avatar>
+                        </Link>
+                        <div className="text-center">
+                            <p className="font-bold text-base truncate">{cardInfo.leader.name}</p>
+                            <p className="flex items-center justify-center text-muted-foreground text-xs mt-1">
+                                <cardInfo.leader.icon className="mr-1 h-3 w-3 text-lp-blue" />
+                                {cardInfo.leader.role}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="flex-grow p-3 space-y-1 overflow-y-auto">
+                        {cardInfo.teams.map(team => (
+                            <TeamOnDuty key={team.title} title={team.title} teamData={team.data} icon={team.icon} />
+                        ))}
+                    </div>
+                </Card>
+            </div>
+          ))}
         </div>
-      </div>
-
-      {/* Bottom Row: Google Slides */}
-      <div>
-        <h3 className="text-xl font-bold mb-4">
-          Touch Base&nbsp;
-          {weekNumber ? (
-            `W${weekNumber}`
-          ) : (
-            <Skeleton className="h-6 w-10 inline-block align-bottom" />
-          )}
-        </h3>
-        <Card className="w-full shadow-lg aspect-video">
-          <CardContent className="p-0 h-full w-full">
-            <iframe
-              src="https://docs.google.com/presentation/d/1orNqiSn-hBjcwBo5jWEJapW31WO2M7yVCB_8GwH8lng/embed?start=false&loop=false&delayms=3000&slide=id.p2"
-              frameBorder="0"
-              width="100%"
-              height="100%"
-              allowFullScreen={true}
-              sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-              className="rounded-lg"
-            ></iframe>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );
 }
-
-    
