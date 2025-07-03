@@ -139,7 +139,7 @@ export default function HomePage() {
         </CardHeader>
       </Card>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="flex flex-row gap-6 overflow-x-auto pb-4">
         
         {/* Control de Pérdidas */}
         <Card className="shadow-lg flex flex-row overflow-hidden">
