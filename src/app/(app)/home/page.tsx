@@ -101,13 +101,13 @@ function TeamOnDuty({ title, teamData, icon }: { title: string, teamData: TeamMe
 
   return (
     <div>
-        <h4 className="font-semibold text-sm mb-3 flex items-center text-muted-foreground">{icon}{title}</h4>
+        <h4 className="font-semibold text-sm mb-2 flex items-center text-muted-foreground">{icon}{title}</h4>
         {onDuty.length > 0 ? (
-          <ul className="space-y-3">
+          <ul className="space-y-2">
             {onDuty.map((member) => (
-              <li key={member.usuario} className="flex items-center space-x-3">
+              <li key={member.usuario} className="flex items-center space-x-2">
                 <Link href={member.chatUrl} target="_blank" rel="noopener noreferrer">
-                  <Avatar className="h-10 w-10 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                  <Avatar className="h-9 w-9 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                     <AvatarImage src={member.photoUrl || (member.email ? `https://avatar.vercel.sh/${member.email}.png?s=100` : undefined)} alt={member.usuario} />
                     <AvatarFallback>{getInitials(member.usuario)}</AvatarFallback>
                   </Avatar>
@@ -142,40 +142,40 @@ export default function HomePage() {
         
         {/* Control de Pérdidas */}
         <Card className="shadow-lg flex flex-col">
-            <CardHeader className="text-center">
+            <CardHeader className="text-center p-4">
                  <Link href={leaders.cp.chatUrl} target="_blank" rel="noopener noreferrer" className="self-center">
-                    <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                    <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                         <AvatarImage src={leaders.cp.photoUrl} alt={leaders.cp.name} />
                         <AvatarFallback>{getInitials(leaders.cp.name)}</AvatarFallback>
                     </Avatar>
                 </Link>
                 <CardTitle className="text-lg mt-2">{leaders.cp.name}</CardTitle>
-                <CardDescription className="flex items-center justify-center text-primary">
+                <CardDescription className="flex items-center justify-center text-primary text-sm">
                     <leaders.cp.icon className="mr-2 h-4 w-4" />
                     {leaders.cp.role}
                 </CardDescription>
             </CardHeader>
-            <CardContent className="flex-grow pt-4 border-t">
+            <CardContent className="flex-grow p-4 pt-2 border-t">
                 <TeamOnDuty title="REPs en Turno" teamData={repsData} icon={<Users className="mr-2 h-4 w-4" />} />
             </CardContent>
         </Card>
 
         {/* CCM */}
         <Card className="shadow-lg flex flex-col">
-            <CardHeader className="text-center">
+            <CardHeader className="text-center p-4">
                  <Link href={leaders.ccm.chatUrl} target="_blank" rel="noopener noreferrer" className="self-center">
-                    <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                    <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                         <AvatarImage src={leaders.ccm.photoUrl} alt={leaders.ccm.name} />
                         <AvatarFallback>{getInitials(leaders.ccm.name)}</AvatarFallback>
                     </Avatar>
                 </Link>
                 <CardTitle className="text-lg mt-2">{leaders.ccm.name}</CardTitle>
-                <CardDescription className="flex items-center justify-center text-primary">
+                <CardDescription className="flex items-center justify-center text-primary text-sm">
                     <leaders.ccm.icon className="mr-2 h-4 w-4" />
                     {leaders.ccm.role}
                 </CardDescription>
             </CardHeader>
-            <CardContent className="flex-grow pt-4 border-t space-y-6">
+            <CardContent className="flex-grow p-4 pt-2 border-t space-y-4">
                 <TeamOnDuty title="Analistas en Turno" teamData={ccmAnalysts} icon={<UserCheck className="mr-2 h-4 w-4" />} />
                 <TeamOnDuty title="Monitoristas en Turno" teamData={ccmMonitors} icon={<Users className="mr-2 h-4 w-4" />} />
             </CardContent>
@@ -183,40 +183,40 @@ export default function HomePage() {
 
         {/* Security */}
         <Card className="shadow-lg flex flex-col">
-            <CardHeader className="text-center">
+            <CardHeader className="text-center p-4">
                  <Link href={leaders.security.chatUrl} target="_blank" rel="noopener noreferrer" className="self-center">
-                    <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                    <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                         <AvatarImage src={leaders.security.photoUrl} alt={leaders.security.name} />
                         <AvatarFallback>{getInitials(leaders.security.name)}</AvatarFallback>
                     </Avatar>
                 </Link>
                 <CardTitle className="text-lg mt-2">{leaders.security.name}</CardTitle>
-                <CardDescription className="flex items-center justify-center text-primary">
+                <CardDescription className="flex items-center justify-center text-primary text-sm">
                     <leaders.security.icon className="mr-2 h-4 w-4" />
                     {leaders.security.role}
                 </CardDescription>
             </CardHeader>
-            <CardContent className="flex-grow pt-4 border-t">
+            <CardContent className="flex-grow p-4 pt-2 border-t">
                 <TeamOnDuty title="Analistas en Turno" teamData={securityAnalysts} icon={<Users className="mr-2 h-4 w-4" />} />
             </CardContent>
         </Card>
 
         {/* Investigaciones */}
         <Card className="shadow-lg flex flex-col">
-            <CardHeader className="text-center">
+            <CardHeader className="text-center p-4">
                  <Link href={leaders.investigaciones.chatUrl} target="_blank" rel="noopener noreferrer" className="self-center">
-                    <Avatar className="h-24 w-24 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                    <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                         <AvatarImage src={leaders.investigaciones.photoUrl} alt={leaders.investigaciones.name} />
                         <AvatarFallback>{getInitials(leaders.investigaciones.name)}</AvatarFallback>
                     </Avatar>
                 </Link>
                 <CardTitle className="text-lg mt-2">{leaders.investigaciones.name}</CardTitle>
-                <CardDescription className="flex items-center justify-center text-primary">
+                <CardDescription className="flex items-center justify-center text-primary text-sm">
                     <leaders.investigaciones.icon className="mr-2 h-4 w-4" />
                     {leaders.investigaciones.role}
                 </CardDescription>
             </CardHeader>
-            <CardContent className="flex-grow pt-4 border-t">
+            <CardContent className="flex-grow p-4 pt-2 border-t">
                 <TeamOnDuty title="Equipo de Análisis" teamData={investigacionesTeam} icon={<Users className="mr-2 h-4 w-4" />} />
             </CardContent>
         </Card>
