@@ -101,26 +101,26 @@ function TeamOnDuty({ title, teamData, icon }: { title: string, teamData: TeamMe
 
   return (
     <div>
-        <h4 className="font-semibold text-xs mb-2 flex items-center text-muted-foreground">{icon}{title}</h4>
+        <h4 className="font-semibold text-sm mb-3 flex items-center text-muted-foreground">{icon}{title}</h4>
         {onDuty.length > 0 ? (
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {onDuty.map((member) => (
-              <li key={member.usuario} className="flex items-center space-x-2">
+              <li key={member.usuario} className="flex items-center space-x-3">
                 <Link href={member.chatUrl} target="_blank" rel="noopener noreferrer">
-                  <Avatar className="h-8 w-8 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                  <Avatar className="h-9 w-9 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                     <AvatarImage src={member.photoUrl || (member.email ? `https://avatar.vercel.sh/${member.email}.png?s=100` : undefined)} alt={member.usuario} />
                     <AvatarFallback>{getInitials(member.usuario)}</AvatarFallback>
                   </Avatar>
                 </Link>
                 <div>
-                  <p className="font-semibold text-xs">{member.usuario}</p>
+                  <p className="font-semibold text-sm">{member.usuario}</p>
                   <p className="text-xs text-muted-foreground">{member.horario}</p>
                 </div>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="text-muted-foreground text-center py-2 text-xs italic">
+          <p className="text-muted-foreground text-center py-2 text-sm italic">
             No hay personal disponible.
           </p>
         )}
@@ -138,87 +138,96 @@ export default function HomePage() {
           <CardDescription>Vista rápida del personal disponible en cada área de Loss Prevention.</CardDescription>
         </CardHeader>
       </Card>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
         {/* Control de Pérdidas */}
-        <Card className="shadow-lg flex flex-col">
-            <CardHeader className="text-center p-3">
-                 <Link href={leaders.cp.chatUrl} target="_blank" rel="noopener noreferrer" className="self-center">
-                    <Avatar className="h-16 w-16 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+        <Card className="shadow-lg flex flex-row overflow-hidden">
+            <div className="flex flex-col items-center justify-center gap-2 p-4 bg-muted/50 border-r w-[170px] shrink-0">
+                <Link href={leaders.cp.chatUrl} target="_blank" rel="noopener noreferrer">
+                    <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                         <AvatarImage src={leaders.cp.photoUrl} alt={leaders.cp.name} />
                         <AvatarFallback>{getInitials(leaders.cp.name)}</AvatarFallback>
                     </Avatar>
                 </Link>
-                <CardTitle className="text-base font-semibold mt-2">{leaders.cp.name}</CardTitle>
-                <CardDescription className="flex items-center justify-center text-primary text-xs">
-                    <leaders.cp.icon className="mr-2 h-4 w-4" />
-                    {leaders.cp.role}
-                </CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow p-3 pt-2 border-t">
+                <div className="text-center">
+                    <p className="font-bold text-base">{leaders.cp.name}</p>
+                    <p className="flex items-center justify-center text-primary text-xs mt-1">
+                        <leaders.cp.icon className="mr-1 h-3 w-3" />
+                        {leaders.cp.role}
+                    </p>
+                </div>
+            </div>
+            <div className="flex-grow p-4">
                 <TeamOnDuty title="REPs en Turno" teamData={repsData} icon={<Users className="mr-2 h-4 w-4" />} />
-            </CardContent>
+            </div>
         </Card>
 
         {/* CCM */}
-        <Card className="shadow-lg flex flex-col">
-            <CardHeader className="text-center p-3">
-                 <Link href={leaders.ccm.chatUrl} target="_blank" rel="noopener noreferrer" className="self-center">
-                    <Avatar className="h-16 w-16 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+        <Card className="shadow-lg flex flex-row overflow-hidden">
+             <div className="flex flex-col items-center justify-center gap-2 p-4 bg-muted/50 border-r w-[170px] shrink-0">
+                <Link href={leaders.ccm.chatUrl} target="_blank" rel="noopener noreferrer">
+                    <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                         <AvatarImage src={leaders.ccm.photoUrl} alt={leaders.ccm.name} />
                         <AvatarFallback>{getInitials(leaders.ccm.name)}</AvatarFallback>
                     </Avatar>
                 </Link>
-                <CardTitle className="text-base font-semibold mt-2">{leaders.ccm.name}</CardTitle>
-                <CardDescription className="flex items-center justify-center text-primary text-xs">
-                    <leaders.ccm.icon className="mr-2 h-4 w-4" />
-                    {leaders.ccm.role}
-                </CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow p-3 pt-2 border-t space-y-3">
+                <div className="text-center">
+                    <p className="font-bold text-base">{leaders.ccm.name}</p>
+                    <p className="flex items-center justify-center text-primary text-xs mt-1">
+                        <leaders.ccm.icon className="mr-1 h-3 w-3" />
+                        {leaders.ccm.role}
+                    </p>
+                </div>
+            </div>
+            <div className="flex-grow p-4 space-y-4 overflow-y-auto">
                 <TeamOnDuty title="Analistas en Turno" teamData={ccmAnalysts} icon={<UserCheck className="mr-2 h-4 w-4" />} />
                 <TeamOnDuty title="Monitoristas en Turno" teamData={ccmMonitors} icon={<Users className="mr-2 h-4 w-4" />} />
-            </CardContent>
+            </div>
         </Card>
 
         {/* Security */}
-        <Card className="shadow-lg flex flex-col">
-            <CardHeader className="text-center p-3">
-                 <Link href={leaders.security.chatUrl} target="_blank" rel="noopener noreferrer" className="self-center">
-                    <Avatar className="h-16 w-16 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+        <Card className="shadow-lg flex flex-row overflow-hidden">
+             <div className="flex flex-col items-center justify-center gap-2 p-4 bg-muted/50 border-r w-[170px] shrink-0">
+                <Link href={leaders.security.chatUrl} target="_blank" rel="noopener noreferrer">
+                    <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                         <AvatarImage src={leaders.security.photoUrl} alt={leaders.security.name} />
                         <AvatarFallback>{getInitials(leaders.security.name)}</AvatarFallback>
                     </Avatar>
                 </Link>
-                <CardTitle className="text-base font-semibold mt-2">{leaders.security.name}</CardTitle>
-                <CardDescription className="flex items-center justify-center text-primary text-xs">
-                    <leaders.security.icon className="mr-2 h-4 w-4" />
-                    {leaders.security.role}
-                </CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow p-3 pt-2 border-t">
+                <div className="text-center">
+                    <p className="font-bold text-base">{leaders.security.name}</p>
+                    <p className="flex items-center justify-center text-primary text-xs mt-1">
+                        <leaders.security.icon className="mr-1 h-3 w-3" />
+                        {leaders.security.role}
+                    </p>
+                </div>
+            </div>
+            <div className="flex-grow p-4">
                 <TeamOnDuty title="Analistas en Turno" teamData={securityAnalysts} icon={<Users className="mr-2 h-4 w-4" />} />
-            </CardContent>
+            </div>
         </Card>
 
         {/* Investigaciones */}
-        <Card className="shadow-lg flex flex-col">
-            <CardHeader className="text-center p-3">
-                 <Link href={leaders.investigaciones.chatUrl} target="_blank" rel="noopener noreferrer" className="self-center">
-                    <Avatar className="h-16 w-16 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+        <Card className="shadow-lg flex flex-row overflow-hidden">
+             <div className="flex flex-col items-center justify-center gap-2 p-4 bg-muted/50 border-r w-[170px] shrink-0">
+                <Link href={leaders.investigaciones.chatUrl} target="_blank" rel="noopener noreferrer">
+                    <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                         <AvatarImage src={leaders.investigaciones.photoUrl} alt={leaders.investigaciones.name} />
                         <AvatarFallback>{getInitials(leaders.investigaciones.name)}</AvatarFallback>
                     </Avatar>
                 </Link>
-                <CardTitle className="text-base font-semibold mt-2">{leaders.investigaciones.name}</CardTitle>
-                <CardDescription className="flex items-center justify-center text-primary text-xs">
-                    <leaders.investigaciones.icon className="mr-2 h-4 w-4" />
-                    {leaders.investigaciones.role}
-                </CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow p-3 pt-2 border-t">
+                <div className="text-center">
+                    <p className="font-bold text-base">{leaders.investigaciones.name}</p>
+                    <p className="flex items-center justify-center text-primary text-xs mt-1">
+                        <leaders.investigaciones.icon className="mr-1 h-3 w-3" />
+                        {leaders.investigaciones.role}
+                    </p>
+                </div>
+            </div>
+            <div className="flex-grow p-4">
                 <TeamOnDuty title="Equipo de Análisis" teamData={investigacionesTeam} icon={<Users className="mr-2 h-4 w-4" />} />
-            </CardContent>
+            </div>
         </Card>
 
       </div>
