@@ -1,7 +1,8 @@
+
 "use client";
 
 import { useState, useEffect, useCallback, type ReactNode } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Users, UserCheck, ShieldAlert, Video, Lock, FileSearch } from 'lucide-react';
 import Link from 'next/link';
@@ -150,41 +151,45 @@ export default function HomePage() {
   }, [teamCards.length]);
 
   return (
-    <div>
-      <h3 className="text-xl font-bold mb-4">Equipo en Turno</h3>
-      <div className="relative w-full max-w-2xl mx-auto overflow-hidden">
-        <div 
-            className="flex transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {teamCards.map((cardInfo) => (
-            <div key={cardInfo.key} className="w-full flex-shrink-0 px-1">
-                <Card className="shadow-lg flex flex-col md:flex-row overflow-hidden h-auto md:h-[300px] w-full">
-                    <div className="flex flex-row md:flex-col items-center justify-center gap-2 p-3 bg-muted/50 border-b md:border-b-0 md:border-r w-full md:w-[220px] shrink-0">
-                        <Link href={cardInfo.leader.chatUrl} target="_blank" rel="noopener noreferrer">
-                            <Avatar className="h-16 w-16 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
-                                <AvatarImage src={cardInfo.leader.photoUrl} alt={cardInfo.leader.name} />
-                                <AvatarFallback>{getInitials(cardInfo.leader.name)}</AvatarFallback>
-                            </Avatar>
-                        </Link>
-                        <div className="text-center">
-                            <p className="font-bold text-base truncate">{cardInfo.leader.name}</p>
-                            <p className="flex items-center justify-center text-muted-foreground text-xs mt-1">
-                                <cardInfo.leader.icon className="mr-1 h-3 w-3 text-lp-blue" />
-                                {cardInfo.leader.role}
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex-grow p-3 space-y-1 overflow-y-auto">
-                        {cardInfo.teams.map(team => (
-                            <TeamOnDuty key={team.title} title={team.title} teamData={team.data} icon={team.icon} />
-                        ))}
-                    </div>
-                </Card>
-            </div>
-          ))}
+    <Card className="shadow-lg w-full">
+      <CardHeader>
+        <CardTitle>Equipo en Turno</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="relative w-full mx-auto overflow-hidden">
+          <div 
+              className="flex transition-transform duration-700 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {teamCards.map((cardInfo) => (
+              <div key={cardInfo.key} className="w-full flex-shrink-0 px-1">
+                  <Card className="shadow-lg flex flex-col md:flex-row overflow-hidden h-auto md:h-[300px] w-full border">
+                      <div className="flex flex-row md:flex-col items-center justify-center gap-2 p-3 bg-muted/50 border-b md:border-b-0 md:border-r w-full md:w-[220px] shrink-0">
+                          <Link href={cardInfo.leader.chatUrl} target="_blank" rel="noopener noreferrer">
+                              <Avatar className="h-16 w-16 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                                  <AvatarImage src={cardInfo.leader.photoUrl} alt={cardInfo.leader.name} />
+                                  <AvatarFallback>{getInitials(cardInfo.leader.name)}</AvatarFallback>
+                              </Avatar>
+                          </Link>
+                          <div className="text-center">
+                              <p className="font-bold text-base truncate">{cardInfo.leader.name}</p>
+                              <p className="flex items-center justify-center text-muted-foreground text-xs mt-1">
+                                  <cardInfo.leader.icon className="mr-1 h-3 w-3 text-lp-blue" />
+                                  {cardInfo.leader.role}
+                              </p>
+                          </div>
+                      </div>
+                      <div className="flex-grow p-3 space-y-1 overflow-y-auto">
+                          {cardInfo.teams.map(team => (
+                              <TeamOnDuty key={team.title} title={team.title} teamData={team.data} icon={team.icon} />
+                          ))}
+                      </div>
+                  </Card>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
