@@ -107,13 +107,13 @@ function TeamOnDuty({ title, teamData, icon }: { title: string, teamData: TeamMe
             {onDuty.map((member) => (
               <li key={member.usuario} className="flex items-center space-x-3">
                 <Link href={member.chatUrl} target="_blank" rel="noopener noreferrer">
-                  <Avatar className="h-9 w-9 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                  <Avatar className="h-8 w-8 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                     <AvatarImage src={member.photoUrl || (member.email ? `https://avatar.vercel.sh/${member.email}.png?s=100` : undefined)} alt={member.usuario} />
                     <AvatarFallback>{getInitials(member.usuario)}</AvatarFallback>
                   </Avatar>
                 </Link>
                 <div>
-                  <p className="font-semibold text-sm">{member.usuario}</p>
+                  <p className="font-semibold text-sm whitespace-nowrap">{member.usuario}</p>
                   <p className="text-xs text-muted-foreground">{member.horario}</p>
                 </div>
               </li>
@@ -130,6 +130,25 @@ function TeamOnDuty({ title, teamData, icon }: { title: string, teamData: TeamMe
 
 
 export default function HomePage() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const teamCards = [
+    { key: 'cp', leader: leaders.cp, teams: [{ title: "REPs en Turno", data: repsData, icon: <Users className="mr-2 h-4 w-4" /> }] },
+    { key: 'ccm', leader: leaders.ccm, teams: [
+        { title: "Analistas en Turno", data: ccmAnalysts, icon: <UserCheck className="mr-2 h-4 w-4" /> },
+        { title: "Monitoristas en Turno", data: ccmMonitors, icon: <Users className="mr-2 h-4 w-4" /> }
+    ]},
+    { key: 'security', leader: leaders.security, teams: [{ title: "Analistas en Turno", data: securityAnalysts, icon: <Users className="mr-2 h-4 w-4" /> }] },
+    { key: 'investigaciones', leader: leaders.investigaciones, teams: [{ title: "Equipo de Análisis", data: investigacionesTeam, icon: <Users className="mr-2 h-4 w-4" /> }] }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % teamCards.length);
+    }, 5000); // Change card every 5 seconds
+    return () => clearInterval(interval);
+  }, [teamCards.length]);
+
   return (
     <div className="space-y-6">
        <Card className="shadow-lg bg-card/50">
@@ -139,97 +158,38 @@ export default function HomePage() {
         </CardHeader>
       </Card>
       
-      <div className="flex flex-row gap-6 overflow-x-auto pb-4">
-        
-        {/* Control de Pérdidas */}
-        <Card className="shadow-lg flex flex-row overflow-hidden">
-            <div className="flex flex-col items-center justify-center gap-2 p-4 bg-muted/50 border-r w-[170px] shrink-0">
-                <Link href={leaders.cp.chatUrl} target="_blank" rel="noopener noreferrer">
-                    <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
-                        <AvatarImage src={leaders.cp.photoUrl} alt={leaders.cp.name} />
-                        <AvatarFallback>{getInitials(leaders.cp.name)}</AvatarFallback>
-                    </Avatar>
-                </Link>
-                <div className="text-center">
-                    <p className="font-bold text-base">{leaders.cp.name}</p>
-                    <p className="flex items-center justify-center text-primary text-xs mt-1">
-                        <leaders.cp.icon className="mr-1 h-3 w-3" />
-                        {leaders.cp.role}
-                    </p>
-                </div>
+      <div className="relative w-full overflow-hidden mx-auto" style={{ maxWidth: '450px' }}>
+         <div 
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {teamCards.map((cardInfo) => (
+             <div key={cardInfo.key} className="w-full flex-shrink-0 px-1">
+                <Card className="shadow-lg flex flex-row overflow-hidden">
+                    <div className="flex flex-col items-center justify-center gap-2 p-3 bg-muted/50 border-r w-[170px] shrink-0">
+                        <Link href={cardInfo.leader.chatUrl} target="_blank" rel="noopener noreferrer">
+                            <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                                <AvatarImage src={cardInfo.leader.photoUrl} alt={cardInfo.leader.name} />
+                                <AvatarFallback>{getInitials(cardInfo.leader.name)}</AvatarFallback>
+                            </Avatar>
+                        </Link>
+                        <div className="text-center">
+                            <p className="font-bold text-base whitespace-nowrap">{cardInfo.leader.name}</p>
+                            <p className="flex items-center justify-center text-primary text-xs mt-1">
+                                <cardInfo.leader.icon className="mr-1 h-3 w-3" />
+                                {cardInfo.leader.role}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="flex-grow p-4 space-y-4 overflow-y-auto">
+                        {cardInfo.teams.map(team => (
+                            <TeamOnDuty key={team.title} title={team.title} teamData={team.data} icon={team.icon} />
+                        ))}
+                    </div>
+                </Card>
             </div>
-            <div className="flex-grow p-4">
-                <TeamOnDuty title="REPs en Turno" teamData={repsData} icon={<Users className="mr-2 h-4 w-4" />} />
-            </div>
-        </Card>
-
-        {/* CCM */}
-        <Card className="shadow-lg flex flex-row overflow-hidden">
-             <div className="flex flex-col items-center justify-center gap-2 p-4 bg-muted/50 border-r w-[170px] shrink-0">
-                <Link href={leaders.ccm.chatUrl} target="_blank" rel="noopener noreferrer">
-                    <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
-                        <AvatarImage src={leaders.ccm.photoUrl} alt={leaders.ccm.name} />
-                        <AvatarFallback>{getInitials(leaders.ccm.name)}</AvatarFallback>
-                    </Avatar>
-                </Link>
-                <div className="text-center">
-                    <p className="font-bold text-base">{leaders.ccm.name}</p>
-                    <p className="flex items-center justify-center text-primary text-xs mt-1">
-                        <leaders.ccm.icon className="mr-1 h-3 w-3" />
-                        {leaders.ccm.role}
-                    </p>
-                </div>
-            </div>
-            <div className="flex-grow p-4 space-y-4 overflow-y-auto">
-                <TeamOnDuty title="Analistas en Turno" teamData={ccmAnalysts} icon={<UserCheck className="mr-2 h-4 w-4" />} />
-                <TeamOnDuty title="Monitoristas en Turno" teamData={ccmMonitors} icon={<Users className="mr-2 h-4 w-4" />} />
-            </div>
-        </Card>
-
-        {/* Security */}
-        <Card className="shadow-lg flex flex-row overflow-hidden">
-             <div className="flex flex-col items-center justify-center gap-2 p-4 bg-muted/50 border-r w-[170px] shrink-0">
-                <Link href={leaders.security.chatUrl} target="_blank" rel="noopener noreferrer">
-                    <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
-                        <AvatarImage src={leaders.security.photoUrl} alt={leaders.security.name} />
-                        <AvatarFallback>{getInitials(leaders.security.name)}</AvatarFallback>
-                    </Avatar>
-                </Link>
-                <div className="text-center">
-                    <p className="font-bold text-base">{leaders.security.name}</p>
-                    <p className="flex items-center justify-center text-primary text-xs mt-1">
-                        <leaders.security.icon className="mr-1 h-3 w-3" />
-                        {leaders.security.role}
-                    </p>
-                </div>
-            </div>
-            <div className="flex-grow p-4">
-                <TeamOnDuty title="Analistas en Turno" teamData={securityAnalysts} icon={<Users className="mr-2 h-4 w-4" />} />
-            </div>
-        </Card>
-
-        {/* Investigaciones */}
-        <Card className="shadow-lg flex flex-row overflow-hidden">
-             <div className="flex flex-col items-center justify-center gap-2 p-4 bg-muted/50 border-r w-[170px] shrink-0">
-                <Link href={leaders.investigaciones.chatUrl} target="_blank" rel="noopener noreferrer">
-                    <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
-                        <AvatarImage src={leaders.investigaciones.photoUrl} alt={leaders.investigaciones.name} />
-                        <AvatarFallback>{getInitials(leaders.investigaciones.name)}</AvatarFallback>
-                    </Avatar>
-                </Link>
-                <div className="text-center">
-                    <p className="font-bold text-base">{leaders.investigaciones.name}</p>
-                    <p className="flex items-center justify-center text-primary text-xs mt-1">
-                        <leaders.investigaciones.icon className="mr-1 h-3 w-3" />
-                        {leaders.investigaciones.role}
-                    </p>
-                </div>
-            </div>
-            <div className="flex-grow p-4">
-                <TeamOnDuty title="Equipo de Análisis" teamData={investigacionesTeam} icon={<Users className="mr-2 h-4 w-4" />} />
-            </div>
-        </Card>
-
+          ))}
+        </div>
       </div>
     </div>
   );
