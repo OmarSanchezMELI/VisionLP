@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { ShieldAlert, FileSearch, Video, Lock } from 'lucide-react';
 import Link from 'next/link';
@@ -190,23 +190,23 @@ export default function InicioPage() {
             <CardDescription>Desliza para ver el personal disponible en cada área. Cambia automáticamente cada 10 segundos.</CardDescription>
         </CardHeader>
         <CardContent>
-            <Carousel
-                plugins={[plugin.current]}
-                opts={{ align: "start", loop: true }}
-                className="w-full"
-            >
-                <CarouselContent>
-                {leaders.map((leader) => (
-                    <CarouselItem key={leader.id} className="sm:basis-1/2 lg:basis-1/3">
-                    <div className="p-1">
-                        <TeamCard leader={leader} team={teams[leader.id as keyof typeof teams]} />
-                    </div>
-                    </CarouselItem>
-                ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden sm:inline-flex" />
-                <CarouselNext className="hidden sm:inline-flex" />
-            </Carousel>
+            <div className="flex justify-center md:justify-start">
+                <Carousel
+                    plugins={[plugin.current]}
+                    opts={{ align: "start", loop: true }}
+                    className="w-full max-w-sm"
+                >
+                    <CarouselContent>
+                    {leaders.map((leader) => (
+                        <CarouselItem key={leader.id}>
+                        <div className="p-1">
+                            <TeamCard leader={leader} team={teams[leader.id as keyof typeof teams]} />
+                        </div>
+                        </CarouselItem>
+                    ))}
+                    </CarouselContent>
+                </Carousel>
+            </div>
         </CardContent>
     </Card>
   );
