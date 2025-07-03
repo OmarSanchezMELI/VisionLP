@@ -175,8 +175,8 @@ export default function HomePage() {
                         </Link>
                         <div className="text-center">
                             <p className="font-bold text-base whitespace-nowrap">{cardInfo.leader.name}</p>
-                            <p className="flex items-center justify-center text-primary text-xs mt-1">
-                                <cardInfo.leader.icon className="mr-1 h-3 w-3" />
+                            <p className="flex items-center justify-center text-muted-foreground text-xs mt-1">
+                                <cardInfo.leader.icon className="mr-1 h-3 w-3 text-primary" />
                                 {cardInfo.leader.role}
                             </p>
                         </div>
