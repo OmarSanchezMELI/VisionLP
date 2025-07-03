@@ -215,16 +215,16 @@ export default function InicioPage() {
                 <CardHeader>
                     <CardTitle className="text-xl md:text-2xl font-headline flex items-center">
                         <FileSearch className="mr-2 h-6 w-6 text-primary" />
-                        Tactic
+                        FPP Semanal
                     </CardTitle>
                     <CardDescription>
-                        Visualización de datos clave del tablero Tactic.
+                        Visualización de datos clave del tablero FPP Semanal.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="h-[600px] md:h-auto md:aspect-[16/9] w-full rounded-lg overflow-hidden border">
                         <iframe
-                            title="Tactic"
+                            title="FPP Semanal"
                             width="100%"
                             height="100%"
                             src={lookerStudioUrl}
