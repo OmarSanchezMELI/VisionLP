@@ -207,7 +207,7 @@ export default function HomePage() {
             <Skeleton className="h-6 w-10 inline-block align-bottom" />
           )}
         </h3>
-        <Card className="w-full aspect-video shadow-lg">
+        <Card className="w-full h-[300px] shadow-lg">
           <CardContent className="p-0 h-full w-full">
             <iframe
               src="https://docs.google.com/presentation/d/1orNqiSn-hBjcwBo5jWEJapW31WO2M7yVCB_8GwH8lng/embed?start=false&loop=false&delayms=3000&slide=id.p2"
@@ -224,5 +224,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-    
