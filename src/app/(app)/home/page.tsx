@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useCallback, type ReactNode } from 'react';
@@ -101,20 +102,20 @@ function TeamOnDuty({ title, teamData, icon }: { title: string, teamData: TeamMe
 
   return (
     <div className="py-1">
-        <h4 className="font-semibold text-sm mb-2 flex items-center text-muted-foreground">{icon}{title}</h4>
+        <h4 className="font-semibold text-base mb-3 flex items-center text-muted-foreground">{icon}{title}</h4>
         {onDuty.length > 0 ? (
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {onDuty.map((member) => (
-              <li key={member.usuario} className="flex items-center space-x-3">
+              <li key={member.usuario} className="flex items-center space-x-4">
                 <Link href={member.chatUrl} target="_blank" rel="noopener noreferrer">
-                  <Avatar className="h-8 w-8 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                  <Avatar className="h-10 w-10 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                     <AvatarImage src={member.photoUrl || (member.email ? `https://avatar.vercel.sh/${member.email}.png?s=100` : undefined)} alt={member.usuario} />
                     <AvatarFallback>{getInitials(member.usuario)}</AvatarFallback>
                   </Avatar>
                 </Link>
                 <div>
-                  <p className="font-semibold text-sm truncate">{member.usuario}</p>
-                  <p className="text-xs text-muted-foreground">{member.horario}</p>
+                  <p className="font-semibold text-base">{member.usuario}</p>
+                  <p className="text-sm text-muted-foreground">{member.horario}</p>
                 </div>
               </li>
             ))}
@@ -155,30 +156,30 @@ export default function HomePage() {
         <CardTitle>Equipo en Turno</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="relative w-full max-w-4xl mx-auto overflow-hidden">
+        <div className="relative w-full overflow-hidden">
           <div 
               className="flex transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {teamCards.map((cardInfo) => (
               <div key={cardInfo.key} className="w-full flex-shrink-0 px-1">
-                  <Card className="shadow-lg flex flex-col md:flex-row overflow-hidden h-auto md:h-[300px] w-full border">
-                      <div className="flex flex-row md:flex-col items-center justify-center gap-2 p-3 bg-muted/50 border-b md:border-b-0 md:border-r w-full md:w-[260px] shrink-0">
+                  <Card className="shadow-lg flex flex-col md:flex-row overflow-hidden w-full border">
+                      <div className="flex items-center space-x-4 p-4 bg-muted/50 border-b md:border-b-0 md:border-r md:flex-col md:space-x-0 md:space-y-4 md:items-center md:justify-center md:w-[260px] shrink-0">
                           <Link href={cardInfo.leader.chatUrl} target="_blank" rel="noopener noreferrer">
-                              <Avatar className="h-16 w-16 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
+                              <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                                   <AvatarImage src={cardInfo.leader.photoUrl} alt={cardInfo.leader.name} />
                                   <AvatarFallback>{getInitials(cardInfo.leader.name)}</AvatarFallback>
                               </Avatar>
                           </Link>
-                          <div className="text-center">
-                              <p className="font-bold text-base truncate">{cardInfo.leader.name}</p>
-                              <p className="flex items-center justify-center text-muted-foreground text-xs mt-1">
-                                  <cardInfo.leader.icon className="mr-1 h-3 w-3 text-lp-blue" />
+                          <div className="text-left md:text-center">
+                              <p className="font-bold text-lg">{cardInfo.leader.name}</p>
+                              <p className="flex items-center md:justify-center text-muted-foreground text-sm mt-1">
+                                  <cardInfo.leader.icon className="mr-2 h-4 w-4 text-lp-blue" />
                                   {cardInfo.leader.role}
                               </p>
                           </div>
                       </div>
-                      <div className="flex-grow p-3 space-y-1 overflow-y-auto">
+                      <div className="flex-grow p-4 space-y-2 overflow-y-auto h-[300px] md:h-auto">
                           {cardInfo.teams.map(team => (
                               <TeamOnDuty key={team.title} title={team.title} teamData={team.data} icon={team.icon} />
                           ))}
