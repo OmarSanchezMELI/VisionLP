@@ -7,6 +7,10 @@ import { cn } from '@/lib/utils';
 export const metadata: Metadata = {
   title: 'LP Vision',
   description: 'Loss Prevention Management for Mercado Libre',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+  },
 };
 
 export default function RootLayout({
