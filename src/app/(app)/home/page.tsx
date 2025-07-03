@@ -158,11 +158,11 @@ export default function HomePage() {
   }, [teamCards.length]);
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start">
-      {/* Left Column: Team Carousel */}
+    <div className="space-y-8">
+      {/* Top Row: Team Carousel */}
       <div>
         <h3 className="text-xl font-bold mb-4">Equipo en Turno</h3>
-        <div className="relative w-full overflow-hidden mx-auto max-w-lg">
+        <div className="relative w-full overflow-hidden mx-auto">
           <div 
               className="flex transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -170,7 +170,7 @@ export default function HomePage() {
             {teamCards.map((cardInfo) => (
               <div key={cardInfo.key} className="w-full flex-shrink-0 px-1">
                   <Card className="shadow-lg flex flex-row overflow-hidden h-[300px]">
-                      <div className="flex flex-col items-center justify-center gap-2 p-4 bg-muted/50 border-r w-[190px] shrink-0">
+                      <div className="flex flex-col items-center justify-center gap-2 p-4 bg-muted/50 border-r w-[210px] shrink-0">
                           <Link href={cardInfo.leader.chatUrl} target="_blank" rel="noopener noreferrer">
                               <Avatar className="h-20 w-20 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                                   <AvatarImage src={cardInfo.leader.photoUrl} alt={cardInfo.leader.name} />
@@ -197,7 +197,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Right Column: Google Slides */}
+      {/* Bottom Row: Google Slides */}
       <div>
         <h3 className="text-xl font-bold mb-4">
           Touch Base&nbsp;
@@ -207,7 +207,7 @@ export default function HomePage() {
             <Skeleton className="h-6 w-10 inline-block align-bottom" />
           )}
         </h3>
-        <Card className="w-full h-[300px] shadow-lg">
+        <Card className="w-full shadow-lg aspect-video">
           <CardContent className="p-0 h-full w-full">
             <iframe
               src="https://docs.google.com/presentation/d/1orNqiSn-hBjcwBo5jWEJapW31WO2M7yVCB_8GwH8lng/embed?start=false&loop=false&delayms=3000&slide=id.p2"
