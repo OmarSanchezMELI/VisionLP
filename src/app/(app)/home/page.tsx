@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useCallback, type ReactNode } from 'react';
@@ -156,7 +155,7 @@ export default function HomePage() {
         <CardTitle>Equipo en Turno</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="relative w-full mx-auto overflow-hidden">
+        <div className="relative w-full max-w-4xl mx-auto overflow-hidden">
           <div 
               className="flex transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -164,7 +163,7 @@ export default function HomePage() {
             {teamCards.map((cardInfo) => (
               <div key={cardInfo.key} className="w-full flex-shrink-0 px-1">
                   <Card className="shadow-lg flex flex-col md:flex-row overflow-hidden h-auto md:h-[300px] w-full border">
-                      <div className="flex flex-row md:flex-col items-center justify-center gap-2 p-3 bg-muted/50 border-b md:border-b-0 md:border-r w-full md:w-[220px] shrink-0">
+                      <div className="flex flex-row md:flex-col items-center justify-center gap-2 p-3 bg-muted/50 border-b md:border-b-0 md:border-r w-full md:w-[260px] shrink-0">
                           <Link href={cardInfo.leader.chatUrl} target="_blank" rel="noopener noreferrer">
                               <Avatar className="h-16 w-16 border-2 border-primary cursor-pointer hover:opacity-80 transition-opacity">
                                   <AvatarImage src={cardInfo.leader.photoUrl} alt={cardInfo.leader.name} />
