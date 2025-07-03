@@ -86,6 +86,7 @@ function AppHeader() {
     <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
        <div className="flex items-center gap-4">
         <SidebarTrigger />
+        <h1 className="text-xl font-bold text-lp-blue font-headline">Visión LP</h1>
       </div>
       <div className="flex items-center justify-end gap-4">
         <WarRoomButton />
