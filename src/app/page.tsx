@@ -12,7 +12,7 @@ export default function RootPage() {
   useEffect(() => {
     if (!isLoading) {
       if (user) {
-        router.replace('/home');
+        router.replace('/control-de-perdidas');
       } else {
         router.replace('/login');
       }

@@ -29,7 +29,7 @@ import {
   SidebarInset,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { Home, ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, FileSearch, ClipboardList, Siren, Video } from 'lucide-react';
+import { ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, FileSearch, ClipboardList, Siren, Video } from 'lucide-react';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
@@ -138,7 +138,6 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   }, [user, isLoading, router]);
 
   const navItems = [
-    { href: '/home', label: 'Home', icon: Home },
     { href: '/control-de-perdidas', label: 'Control de Pérdidas', icon: ShieldAlert },
     { href: '/ccm-lp', label: 'CCM', icon: Video },
     { href: '/security', label: 'Security', icon: Lock },
@@ -169,7 +168,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
                 <SidebarMenuItem key={item.label}>
                     <SidebarMenuButton
                         asChild
-                        isActive={pathname === item.href || (item.href !== '/home' && pathname.startsWith(item.href!))}
+                        isActive={pathname.startsWith(item.href!)}
                         tooltip={{children: item.label, side: "right", className: "bg-primary text-primary-foreground"}}
                         aria-label={item.label}
                     >
