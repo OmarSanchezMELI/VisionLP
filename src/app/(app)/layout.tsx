@@ -29,7 +29,7 @@ import {
   SidebarInset,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, FileSearch, ClipboardList, Siren, Video } from 'lucide-react';
+import { ShieldAlert, Lock, Briefcase, BotIcon, LogOut, LayoutDashboard, FileSearch, ClipboardList, Siren, Video, Home } from 'lucide-react';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
@@ -138,6 +138,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   }, [user, isLoading, router]);
 
   const navItems = [
+    { href: '/inicio', label: 'Inicio', icon: Home },
     { href: '/control-de-perdidas', label: 'Control de Pérdidas', icon: ShieldAlert },
     { href: '/ccm-lp', label: 'CCM', icon: Video },
     { href: '/security', label: 'Security', icon: Lock },

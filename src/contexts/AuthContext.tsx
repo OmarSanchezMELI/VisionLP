@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (!isLoading) {
       const isAuthPage = pathname === '/login';
       if (user && isAuthPage) {
-        router.replace('/control-de-perdidas');
+        router.replace('/inicio');
       } else if (!user && !isAuthPage && pathname !== '/') { // allow / to redirect
         router.replace('/login');
       }
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(userData);
       localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(userData));
       setIsLoading(false);
-      router.push('/control-de-perdidas');
+      router.push('/inicio');
       return true;
     }
     setIsLoading(false);
