@@ -1,12 +1,13 @@
 
 "use client";
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { ShieldAlert, FileSearch, Video, Lock } from 'lucide-react';
 import Link from 'next/link';
+import Autoplay from "embla-carousel-autoplay"
 
 // --- Data Consolidation ---
 
@@ -178,14 +179,19 @@ function TeamCard({ leader, team }: { leader: typeof leaders[0], team: any[] }) 
 
 // --- Main Page Component ---
 export default function InicioPage() {
+    const plugin = useRef(
+        Autoplay({ delay: 10000, stopOnMouseEnter: true })
+    );
+
   return (
     <Card className="shadow-lg">
         <CardHeader>
             <CardTitle className="text-xl md:text-2xl font-headline">Equipo en Turno</CardTitle>
-            <CardDescription>Desliza para ver el personal disponible en cada área.</CardDescription>
+            <CardDescription>Desliza para ver el personal disponible en cada área. Cambia automáticamente cada 10 segundos.</CardDescription>
         </CardHeader>
         <CardContent>
             <Carousel
+                plugins={[plugin.current]}
                 opts={{ align: "start", loop: true }}
                 className="w-full"
             >
