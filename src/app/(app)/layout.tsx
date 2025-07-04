@@ -2,7 +2,7 @@
 "use client";
 
 import type { ReactNode } from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { MercadoLibreLogo } from '@/components/MercadoLibreLogo';
@@ -95,9 +95,9 @@ function AppHeader() {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                 <Avatar className="h-10 w-10 border-2 border-primary">
-                  <AvatarImage src={`https://avatar.vercel.sh/${user.email}.png?s=100`} alt={user.email} />
+                  <AvatarImage src={`https://avatar.vercel.sh/${user.email}.png?s=100`} alt={user.email || ''} />
                   <AvatarFallback className="bg-primary text-primary-foreground">
-                    {user.email.substring(0, 2).toUpperCase()}
+                    {user.email ? user.email.substring(0, 2).toUpperCase() : ''}
                   </AvatarFallback>
                 </Avatar>
               </Button>
