@@ -10,6 +10,7 @@ export const authorizedEmails: string[] = [
   'leslymichelle.gonzaleztoscano@mercadolibre.com.mx',
   'alfredo.arredondo@mercadolibre.com.mx',
   'alejandra.cortes@mercadolibre.com.mx',
+  'edmundo.chacon@mercadolibre.com.mx',
   // For testing purposes, you might add other emails here temporarily
   // e.g., 'test@example.com'
 ];
